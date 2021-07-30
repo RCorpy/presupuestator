@@ -28,7 +28,7 @@ function App() {
 
   return (
     <React.StrictMode>
-      <MainData setMainData={setMainData}/>
+      <MainData setMainData={setMainData} mainData={mainData}/>
       <Collapsable setCollapsableData={setCollapsableData}/>
       <Identifyers setIdentifyersData={setIdentifyersData}/>
       <CreatePanel pricePerM={1} total={2}/>
