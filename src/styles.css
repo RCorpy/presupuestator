@@ -2,3 +2,9 @@ body {
     font-size: 20px;
   
   }
+
+  .inputrow {
+    display:flex;
+    justify-content: space-around;
+    padding-top: 3vh;
+  }
