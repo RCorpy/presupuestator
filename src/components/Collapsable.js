@@ -12,8 +12,16 @@ export default function Main({setCollapsableData, collapsableData}) {
         })
     }
 
+    const handleHerramientasData = (key, value) => {
+        setCollapsableData((prevData)=>{
+            let returnValue = {...prevData}
+            returnValue["herramientas"][key] = value
+            return returnValue
+        })
+    }
+
     return (
-        <div className="inputrow">
+        <div className="inputrow" style={{marginBottom: "8vh"}}>
             <input type="number" onChange={(event)=>handleSetCollapsableData("portes", event.target.value)} value={collapsableData.portes}/>
             <input type="number" onChange={(event)=>handleSetCollapsableData("descuento", event.target.value/100)} value={collapsableData.descuento*100}/>
             <Dropdown>
@@ -27,7 +35,11 @@ export default function Main({setCollapsableData, collapsableData}) {
                     
                 </Dropdown.Menu>
             </Dropdown>
-            herramientas: cubo, rodillos, bascula
+            <div className="herramientas">
+                <input type="number" onChange={(event)=>handleHerramientasData("rodillos", event.target.value)} value={collapsableData.herramientas.rodillos}/>
+                <input type="number" onChange={(event)=>handleHerramientasData("basculas", event.target.value)} value={collapsableData.herramientas.basculas}/>
+                <input type="number" onChange={(event)=>handleHerramientasData("cubos", event.target.value)} value={collapsableData.herramientas.cubos}/>
+            </div>
         </div>
     )
 }

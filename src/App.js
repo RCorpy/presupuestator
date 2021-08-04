@@ -7,7 +7,6 @@ import Collapsable from "./components/Collapsable"
 import CreatePanel from "./components/CreatePanel"
 import Identifyers from "./components/Identifyers"
 import Invoice from "./components/Invoice"
-import axios from "axios";
 import "./styles.css";
 
 import importedPriceObject from "./formats/priceObject"

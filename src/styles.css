@@ -8,3 +8,9 @@ body {
     justify-content: space-around;
     padding-top: 3vh;
   }
+
+  .herramientas {
+    display: flex;
+    flex-direction: column;
+    height: 3vh;
+  }
