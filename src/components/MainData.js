@@ -21,7 +21,7 @@ export default function Main({setMainData, mainData}) {
 
     return (
         <div className="inputrow">
-            <Dropdown>
+            <Dropdown className="inputgroup2">
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                     {mainData.resina}
                 </Dropdown.Toggle>
@@ -33,8 +33,12 @@ export default function Main({setMainData, mainData}) {
                     <Dropdown.Item onClick={()=>{handleSetMainData("resina", "politop"); console.log(mainData)}}>politop</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-            <input type="number" onChange={(event)=>handleSetMainData("m2", event.target.value)} value={mainData.m2}/>
-            <Dropdown>
+            <div className="inputgroup">
+                <input type="number" id="m²" name="m²" className="inputbody" placeholder="m²" onChange={(event)=>handleSetMainData("m2", event.target.value)} value={mainData.m2}/>
+                <label class="inputlabel" for="m²"> m² </label>
+            </div>
+            
+            <Dropdown className="inputgroup2">
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                     {capasDictionary[mainData.capas]}
                 </Dropdown.Toggle>
@@ -46,7 +50,7 @@ export default function Main({setMainData, mainData}) {
                     <Dropdown.Item onClick={()=>{handleSetMainData("capas", "10"); console.log(mainData)}}>Imprimación</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-            <Form.Select value={mainData.color} onChange={(event)=>{
+            <Form.Select className="inputgroup2" value={mainData.color} onChange={(event)=>{
                 let value = event.target.value
                 handleSetMainData("color", value)
                 setColorFieldBackgroundColor(colorChoices.filter(element=>element[0]==value)[0][1])

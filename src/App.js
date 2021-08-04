@@ -27,11 +27,19 @@ function App() {
 
   return (
     <React.StrictMode>
-      <MainData setMainData={setMainData} mainData={mainData}/>
-      <Collapsable setCollapsableData={setCollapsableData} collapsableData={collapsableData}/>
-      <Identifyers setIdentifyersData={setIdentifyersData}/>
-      <CreatePanel pricePerM={1} total={2}/>
-      <Invoice />
+      <div className="fullscreen">
+        <div className="top">
+          <div className="leftside">
+            <MainData setMainData={setMainData} mainData={mainData}/>
+            <Collapsable setCollapsableData={setCollapsableData} collapsableData={collapsableData}/>
+            <Identifyers setIdentifyersData={setIdentifyersData} identifyersData={identifyersData}/>
+          </div>
+          <div className="rightside">
+            <Invoice />
+          </div>
+        </div>
+        <CreatePanel pricePerM={1} total={2}/>
+      </div>
     </React.StrictMode>
   );
 }

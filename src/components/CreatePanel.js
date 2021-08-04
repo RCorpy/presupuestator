@@ -8,10 +8,10 @@ export default function Main({pricePerM, total}) {
     const [auth, setAuth] = useState("noauth")
 
     return (
-        <div>
-            <Badge pill bg="primary">{pricePerM} €/m²</Badge>
+        <div className="inputrow">
+            <Badge pill bg="primary" className="pillBadge">{pricePerM} €/m²</Badge>
             <Button variant="danger" onClick={()=>getAuth(setAuth)}>CREAR</Button>
-            <Badge pill bg="dark">{total} €</Badge>
+            <Badge pill bg="dark" className="pillBadge">{total} €</Badge>
             {auth}
         </div>
     )

@@ -14,3 +14,97 @@ body {
     flex-direction: column;
     height: 3vh;
   }
+
+  .leftside {
+    width: 55vw;
+  }
+
+  .rightside {
+    width: 45vw;
+  }
+  
+  .fullscreen {
+    width : 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .top{
+    display: flex;
+    height: 80vh;
+  }
+
+  .pillBadge{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inputlabel {
+    font-size: 0.7rem;
+    margin-left: 2vh;
+    margin-top: 0.7vh;
+    display: block;
+    transition: all 0.3s;
+    transform: translateY(0vh);
+  }
+  
+  .inputbody {
+
+    margin: 0 auto;
+    padding: 1.5vh 0.7vh;
+    border-radius: 0.2vh;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    width: 90%;
+    display: block;
+    border-bottom: 0.3vh solid transparent;
+    transition: all 0.3s;
+  }
+  
+  .inputbody:placeholder-shown + .inputlabel {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translateY(40rem);
+    transform: translateY(40rem);
+  }
+
+  .inputlabelherramientas {
+    font-size: 0.7rem;
+    margin-left: 2vh;
+    margin-top: 0.7vh;
+    display: block;
+    transition: all 0.3s;
+    transform: translateY(0vh);
+  }
+  
+  .inputbodyherramientas {
+
+    margin: 0 auto;
+    padding: 0.2vh 0.7vh;
+    border-radius: 0.2vh;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    width: 90%;
+    display: block;
+    border-bottom: 0.3vh solid transparent;
+    transition: all 0.3s;
+  }
+  
+  .inputbodyherramientas:placeholder-shown + .inputlabelherramientas {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translateY(40rem);
+    transform: translateY(40rem);
+  }
+
+  .inputgroup2{
+    height: 6vh;
+    margin: 0 1vh;
+    border: 0 !important;
+  }
+
+  .btn{
+    padding: 1.6vh 1vh !important;
+  }
