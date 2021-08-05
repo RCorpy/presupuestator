@@ -1,9 +1,11 @@
 import React from 'react'
+import "../formats/invoiceStyles.css"
 
-export default function Main() {
+export default function Invoice({mainData, collapsableData}) {
     return (
-        <div>
-            yes
+        <div className="invoice">
+            <div className="titulo">Presupuesto</div>
         </div>
+        
     )
 }

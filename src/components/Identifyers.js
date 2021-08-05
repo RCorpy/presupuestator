@@ -14,12 +14,12 @@ export default function Main({setIdentifyersData, identifyersData}) {
         <div className="inputrow">
             <div className="inputgroup">
                 <input type="text" id="concepto" name="concepto" className="inputbody" placeholder="concepto" onChange={(event)=>{handleSetIdentifyerData("concepto", event.target.value)}}></input>
-                <label class="inputlabel" for="concepto"> Concepto </label>
+                <label className="inputlabel" htmlFor="concepto"> Concepto </label>
             </div>
             
             <div className="inputgroup">
                 <input type="text" id="nombre" name="nombre" className="inputbody" placeholder="nombre" onChange={(event)=>{handleSetIdentifyerData("nombre", event.target.value)}}></input>
-                <label class="inputlabel" for="nombre"> Nombre </label>
+                <label className="inputlabel" htmlFor="nombre"> Nombre </label>
             </div>
         </div>
     )

@@ -15,15 +15,31 @@ import importedCollapsableData from "./formats/importedCollapsableData"
 import importedIdentifyerData from "./formats/importedIdentifyersData"
 import importedResultData from "./formats/importedResultData"
 
+import {getArticulosTable, getAuth} from './formats/apiRequests'
+
 function App() {
 
   const [priceObject, setPriceObject] = useState(importedPriceObject)
+  const [auth, setAuth] = useState("")
+
 
   const [mainData, setMainData] = useState(importedMainData)
   const [collapsableData, setCollapsableData] = useState(importedCollapsableData)
   const [identifyersData, setIdentifyersData] = useState(importedIdentifyerData)
 
   const [resultData, setResultData] = useState(importedResultData)
+
+  useEffect(()=>{
+    getAuth(setAuth)
+  },[])
+
+  useEffect(()=>{
+    if(auth){
+      getArticulosTable(auth, setPriceObject)
+    }
+  }, [auth])
+
+
 
   return (
     <React.StrictMode>
@@ -35,7 +51,7 @@ function App() {
             <Identifyers setIdentifyersData={setIdentifyersData} identifyersData={identifyersData}/>
           </div>
           <div className="rightside">
-            <Invoice />
+            <Invoice mainData={mainData} collapsableData={collapsableData}/>
           </div>
         </div>
         <CreatePanel pricePerM={1} total={2}/>

@@ -35,7 +35,7 @@ export default function Main({setMainData, mainData}) {
             </Dropdown>
             <div className="inputgroup">
                 <input type="number" id="m²" name="m²" className="inputbody" placeholder="m²" onChange={(event)=>handleSetMainData("m2", event.target.value)} value={mainData.m2}/>
-                <label class="inputlabel" for="m²"> m² </label>
+                <label className="inputlabel" htmlFor="m²"> m² </label>
             </div>
             
             <Dropdown className="inputgroup2">
