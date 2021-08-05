@@ -17,6 +17,8 @@ import importedResultData from "./formats/importedResultData"
 
 import {getArticulosTable, getAuth} from './formats/apiRequests'
 
+import {getResultData, modifyResultData} from './formats/getResultData'
+
 function App() {
 
   const [priceObject, setPriceObject] = useState(importedPriceObject)
@@ -28,6 +30,14 @@ function App() {
   const [identifyersData, setIdentifyersData] = useState(importedIdentifyerData)
 
   const [resultData, setResultData] = useState(importedResultData)
+
+  useEffect(()=>{
+    getResultData(setResultData, mainData, collapsableData)
+  }, [mainData])
+
+  useEffect(()=>{
+    modifyResultData(resultData, collapsableData)
+  }, [mainData, collapsableData])
 
   useEffect(()=>{
     getAuth(setAuth)
