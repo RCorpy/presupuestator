@@ -21,7 +21,7 @@ export default function Main({setCollapsableData, collapsableData}) {
     }
 
     return (
-        <div className="inputrow" style={{marginBottom: "8vh"}}>
+        <div className="inputrow" style={{marginBottom: "15vh"}}>
             <div className="inputgroup">
                 <input type="number" id="portes" name="portes" className="inputbody" placeholder="portes" onChange={(event)=>handleSetCollapsableData("portes", event.target.value)} value={collapsableData.portes}/>
                 <label class="inputlabel" for="portes"> Portes </label>

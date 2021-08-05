@@ -55,7 +55,6 @@ body {
     margin: 0 auto;
     padding: 1.5vh 0.7vh;
     border-radius: 0.2vh;
-    background-color: rgb(255, 255, 255);
     border: none;
     width: 90%;
     display: block;
@@ -84,7 +83,6 @@ body {
     margin: 0 auto;
     padding: 0.2vh 0.7vh;
     border-radius: 0.2vh;
-    background-color: rgb(255, 255, 255);
     border: none;
     width: 90%;
     display: block;
@@ -103,8 +101,14 @@ body {
     height: 6vh;
     margin: 0 1vh;
     border: 0 !important;
+    
   }
 
   .btn{
     padding: 1.6vh 1vh !important;
+  }
+
+  input{
+    background-color: lightgrey;
+    
   }
