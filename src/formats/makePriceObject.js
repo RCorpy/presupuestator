@@ -567,7 +567,6 @@ const makePriceObject = (responseObject)=>{
             27.5: 0
         },
       },
-  
     acrilica:{
         Ocre:{
             5: 0,
@@ -661,7 +660,6 @@ const makePriceObject = (responseObject)=>{
             25: 0
         },
       },
-  
     politop: {
         Ocre:{
             5: (responseObject[231] && responseObject[231][10]) || 0,

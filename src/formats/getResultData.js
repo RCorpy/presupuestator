@@ -19,15 +19,67 @@ export const getResultData = (setResult, mainData) => {
         capas: {
             amountOfKits: [0,0,0,0,0],
             sizeOfKits: [5,10,15,20,25],
-        }
+        },
+        gPerM2: 0,
     }
 
-    const totalKgForKits = (mainData.m2 * GRAMOS_POR_CAPA / 1000) % TAMAÑOS_DE_RESINA[mainData.resina] > 1 ? 
-        (mainData.m2 * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) - (mainData.m2 * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) % TAMAÑOS_DE_RESINA[mainData.resina] + TAMAÑOS_DE_RESINA[mainData.resina] :
-        (mainData.m2 * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) - (mainData.m2 * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) % TAMAÑOS_DE_RESINA[mainData.resina]
+    //preparacion de datos y variables para el calculo
 
-    console.log(totalKgForKits, "gramos por capa: ", totalKgForKits/mainData.m2 * GRAMOS_EN_UN_KG)
+    const denominadorKgsResina = TAMAÑOS_DE_RESINA[mainData.resina]
 
+    const totalKgForKitsPorCapa = (mainData.m2 * GRAMOS_POR_CAPA / 1000) % denominadorKgsResina > 1 ? 
+        (mainData.m2 * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) - (mainData.m2 * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) % denominadorKgsResina + denominadorKgsResina :
+        (mainData.m2 * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) - (mainData.m2 * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) % denominadorKgsResina
+
+    const [imprimacion, capas] = mainData.capas.split("")
+
+    result.imprimacion.sizeOfKits = [denominadorKgsResina, denominadorKgsResina*2, denominadorKgsResina*3, denominadorKgsResina*4, denominadorKgsResina*5]
+    result.capas.sizeOfKits = [denominadorKgsResina, denominadorKgsResina*2, denominadorKgsResina*3, denominadorKgsResina*4, denominadorKgsResina*5]
+
+    result.gPerM2 = totalKgForKitsPorCapa/mainData.m2 * GRAMOS_EN_UN_KG
+
+    // fin de preparacion
+
+    //Calculo de los kits
+
+    let returnArray = [0,0,0,0,0]
+
+    const calcularKits = (layers) => {
+        
+        let totalKgs = totalKgForKitsPorCapa*layers - denominadorKgsResina*5*returnArray[4]
+
+        if(result.capas.sizeOfKits[4] > totalKgs){
+            let positionInTheArray = totalKgs / denominadorKgsResina
+            returnArray[positionInTheArray] = returnArray[positionInTheArray]+1
+        }
+        //probando aun (mejor mandar 2 o 3 kits de 18 o 24 que varios de 30 y alguno de 6)
+        else if(returnArray[4]===0 &&
+            (totalKgs % denominadorKgsResina*3===0 || totalKgs % denominadorKgsResina*4 ===0) &&
+            totalKgs % denominadorKgsResina*5 !==0){
+                if(totalKgs % denominadorKgsResina*4 ===0){return [0,0,0,totalKgs/denominadorKgsResina*4,0]}
+                else{return [0,0,totalKgs/denominadorKgsResina*3,0,0]}
+        }
+        //fin de pruebas
+        else{
+            returnArray[4] = returnArray[4]+1
+            calcularKits(layers)
+        }
+
+        return returnArray
+    }
+
+    if(imprimacion){
+        returnArray = [0,0,0,0,0]
+        result.imprimacion.amountOfKits = calcularKits(imprimacion)
+    }
+
+    if(capas){
+        returnArray = [0,0,0,0,0]
+        result.capas.amountOfKits = calcularKits(capas)
+
+    }
+
+    //fin de calculo de kits
     console.log("gotten result: ", result)
     setResult(result)
 }
