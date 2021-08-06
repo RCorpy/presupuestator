@@ -27,10 +27,10 @@ export default function Main({setMainData, mainData}) {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={()=>{handleSetMainData("resina", "epoxy brillo"); console.log(mainData)}}>Epoxy brillo</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>{handleSetMainData("resina", "epoxy mate"); console.log(mainData)}}>Epoxy mate</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>{handleSetMainData("resina", "acrilica"); console.log(mainData)}}>acrilica</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>{handleSetMainData("resina", "politop"); console.log(mainData)}}>politop</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>{handleSetMainData("resina", "epoxy brillo")}}>Epoxy brillo</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>{handleSetMainData("resina", "epoxy mate")}}>Epoxy mate</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>{handleSetMainData("resina", "acrilica")}}>acrilica</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>{handleSetMainData("resina", "politop")}}>politop</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
             <div className="inputgroup">
@@ -44,10 +44,10 @@ export default function Main({setMainData, mainData}) {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={()=>{handleSetMainData("capas", "12"); console.log(mainData)}}>Imprimación y 2 manos</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>{handleSetMainData("capas", "02"); console.log(mainData)}}>2 manos</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>{handleSetMainData("capas", "01"); console.log(mainData)}}>1 mano</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>{handleSetMainData("capas", "10"); console.log(mainData)}}>Imprimación</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>{handleSetMainData("capas", "12")}}>Imprimación y 2 manos</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>{handleSetMainData("capas", "02")}}>2 manos</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>{handleSetMainData("capas", "01")}}>1 mano</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>{handleSetMainData("capas", "10")}}>Imprimación</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
             <Form.Select className="inputgroup2" value={mainData.color} onChange={(event)=>{

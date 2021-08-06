@@ -48,16 +48,20 @@ export const getResultData = (setResult, mainData) => {
         
         let totalKgs = totalKgForKitsPorCapa*layers - denominadorKgsResina*5*returnArray[4]
 
+        if(totalKgs==0){
+            return returnArray
+        }
         if(result.capas.sizeOfKits[4] > totalKgs){
             let positionInTheArray = totalKgs / denominadorKgsResina
             returnArray[positionInTheArray] = returnArray[positionInTheArray]+1
         }
         //probando aun (mejor mandar 2 o 3 kits de 18 o 24 que varios de 30 y alguno de 6)
+
         else if(returnArray[4]===0 &&
-            (totalKgs % denominadorKgsResina*3===0 || totalKgs % denominadorKgsResina*4 ===0) &&
-            totalKgs % denominadorKgsResina*5 !==0){
-                if(totalKgs % denominadorKgsResina*4 ===0){return [0,0,0,totalKgs/denominadorKgsResina*4,0]}
-                else{return [0,0,totalKgs/denominadorKgsResina*3,0,0]}
+            (totalKgs % (denominadorKgsResina*3)===0 || totalKgs % (denominadorKgsResina*4) ===0) &&
+            totalKgs % (denominadorKgsResina*5) !=0){
+                if(totalKgs % (denominadorKgsResina*4) ===0){return [0,0,0,totalKgs/(denominadorKgsResina*4),0]}
+                else{return [0,0,totalKgs/(denominadorKgsResina*3),0,0]}
         }
         //fin de pruebas
         else{

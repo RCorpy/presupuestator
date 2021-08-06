@@ -61,7 +61,7 @@ function App() {
             <Identifyers setIdentifyersData={setIdentifyersData} identifyersData={identifyersData}/>
           </div>
           <div className="rightside">
-            <Invoice mainData={mainData} collapsableData={collapsableData}/>
+            <Invoice mainData={mainData} collapsableData={collapsableData} resultData={resultData}/>
           </div>
         </div>
         <CreatePanel pricePerM={1} total={2}/>
