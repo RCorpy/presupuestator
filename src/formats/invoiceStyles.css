@@ -4,3 +4,43 @@
     align-items: center;
     width: 100%;
 }
+
+.imprimacion{
+    margin-left: 2vh;
+}
+
+
+.capas{
+    margin-left: 2vh;
+}
+
+.imgcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2vh;
+    padding-bottom: 5vh;
+}
+
+li{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    
+}
+
+.listitem{
+    width: 8rem;
+    text-align: right;
+    margin-right: 4vh;
+
+}
+
+ul{
+    padding: 0 !important;
+}
+
+.disolvente{
+    display: flex;
+    margin-left: 2vh;
+}

@@ -19,6 +19,8 @@ import {getArticulosTable, getAuth} from './formats/apiRequests'
 
 import {getResultData, modifyResultData} from './formats/getResultData'
 
+import logo from './formats/teklackelogo.png'
+
 function App() {
 
   const [priceObject, setPriceObject] = useState(importedPriceObject)
@@ -46,6 +48,7 @@ function App() {
   useEffect(()=>{
     if(auth){
       getArticulosTable(auth, setPriceObject)
+      console.log(priceObject)
     }
   }, [auth])
 
@@ -56,15 +59,18 @@ function App() {
       <div className="fullscreen">
         <div className="top">
           <div className="leftside">
+            <div className="imgcontainer">
+              <img src={logo} alt="teklacke logo"></img>
+            </div>
             <MainData setMainData={setMainData} mainData={mainData}/>
             <Collapsable setCollapsableData={setCollapsableData} collapsableData={collapsableData}/>
             <Identifyers setIdentifyersData={setIdentifyersData} identifyersData={identifyersData}/>
           </div>
           <div className="rightside">
-            <Invoice mainData={mainData} collapsableData={collapsableData} resultData={resultData}/>
+            <Invoice mainData={mainData} collapsableData={collapsableData} resultData={resultData} setResultData={setResultData} priceObject={priceObject}/>
           </div>
         </div>
-        <CreatePanel pricePerM={1} total={2}/>
+        <CreatePanel pricePerM={1} total={2} gm2Imprimacion={resultData.gPerM2.imprimacion} gm2Capas={resultData.gPerM2.capas}/>
       </div>
     </React.StrictMode>
   );

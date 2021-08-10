@@ -381,7 +381,7 @@ const makePriceObject = (responseObject)=>{
  // if 0 es que no existe => devolver 0
 
  return {
-    epoxiBrillo:{
+    "epoxy brillo":{
         Ocre:{
             6: (responseObject[116] && responseObject[116][10]) || 0,
             12: (responseObject[117] && responseObject[117][10]) || 0,
@@ -474,7 +474,7 @@ const makePriceObject = (responseObject)=>{
             30: (responseObject[180] && responseObject[180][10]) || 0
         },
       },
-    epoxiMate: {
+    "epoxy mate": {
         Ocre:{
             5.5: (responseObject[385] && responseObject[385][10]) || 0,
             11: (responseObject[386] && responseObject[386][10]) || 0,

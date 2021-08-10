@@ -10,7 +10,7 @@ const TAMAÑOS_DE_RESINA = {
 }
 
 
-export const getResultData = (setResult, mainData) => {
+export const getResultData = (setResult, mainData, collapsableData) => {
     let result = {
         imprimacion: {
             amountOfKits: [0,0,0,0,0],
@@ -20,7 +20,10 @@ export const getResultData = (setResult, mainData) => {
             amountOfKits: [0,0,0,0,0],
             sizeOfKits: [5,10,15,20,25],
         },
-        gPerM2: 0,
+        gPerM2: {
+            imprimacion: 0,
+            capas: 0
+        },
     }
 
     //preparacion de datos y variables para el calculo
@@ -36,7 +39,7 @@ export const getResultData = (setResult, mainData) => {
     result.imprimacion.sizeOfKits = [denominadorKgsResina, denominadorKgsResina*2, denominadorKgsResina*3, denominadorKgsResina*4, denominadorKgsResina*5]
     result.capas.sizeOfKits = [denominadorKgsResina, denominadorKgsResina*2, denominadorKgsResina*3, denominadorKgsResina*4, denominadorKgsResina*5]
 
-    result.gPerM2 = totalKgForKitsPorCapa/mainData.m2 * GRAMOS_EN_UN_KG
+    
 
     // fin de preparacion
 
@@ -72,19 +75,38 @@ export const getResultData = (setResult, mainData) => {
         return returnArray
     }
 
+    let imprimacionKgs, capasKgs = 0
+
     if(imprimacion){
         returnArray = [0,0,0,0,0]
         result.imprimacion.amountOfKits = calcularKits(imprimacion)
+
+        imprimacionKgs = result.imprimacion.amountOfKits.reduce((acc, value, index)=>{
+            return acc+(value*result.imprimacion.sizeOfKits[index])
+        })
+        result.gPerM2.imprimacion = imprimacionKgs/mainData.m2 * GRAMOS_EN_UN_KG 
     }
 
     if(capas){
         returnArray = [0,0,0,0,0]
         result.capas.amountOfKits = calcularKits(capas)
 
+        capasKgs = result.capas.amountOfKits.reduce((acc, value, index)=>{
+            return acc+(value*result.capas.sizeOfKits[index])
+        })
+
+        result.gPerM2.capas = capasKgs/mainData.m2 * GRAMOS_EN_UN_KG * (capas ? 1/capas : 1)
+    }
+
+    if(collapsableData.disolvente){
+        result.disolvente = ((imprimacionKgs+capasKgs) >60) ? Math.ceil((imprimacionKgs+capasKgs)/60) : 2
+    }
+    else{
+        result.disolvente = 0
     }
 
     //fin de calculo de kits
-    console.log("gotten result: ", result)
+    //console.log("gotten result: ", result)
     setResult(result)
 }
 
