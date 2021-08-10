@@ -380,6 +380,19 @@
 const makePriceObject = (responseObject)=>{
  // if 0 es que no existe => devolver 0
 
+    console.log("PRICE OBJECT",{
+        "epoxy brillo":{
+            'Gris medio':{
+                6: (responseObject[131] && responseObject[131][10]) || 0,
+                12: (responseObject[132] && responseObject[132][10]) || 0,
+                18: (responseObject[133] && responseObject[133][10]) || 0,
+                24: (responseObject[134] && responseObject[134][10]) || 0,
+                30: (responseObject[135] && responseObject[135][10]) || 0
+            },
+        },
+    })
+
+ 
  return {
     "epoxy brillo":{
         Ocre:{

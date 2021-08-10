@@ -2,7 +2,7 @@ import React from 'react'
 
 const GRAMOS_EN_UN_KG = 1000
 
-export default function Botonera({setResultData ,index, layer, mainData}) {
+export default function Botonera({amount, thisPrice, setResultData ,index, layer, mainData}) {
 
     const handleChange = (value)=>{
         setResultData((prev)=>{
@@ -32,9 +32,14 @@ export default function Botonera({setResultData ,index, layer, mainData}) {
     }
 
     return (
-        <div>
-          <button onClick={()=>handleChange(1)}>+</button>
-          <button onClick={()=>handleChange(-1)}>-</button>  
-        </div>
+        <>
+            <div>
+                <button onClick={()=>handleChange(1)}>+</button>
+                <button onClick={()=>handleChange(-1)}>-</button>  
+            </div>
+
+            <div>{thisPrice} // </div>
+            <div> {thisPrice*amount}</div>
+        </>
     )
 }

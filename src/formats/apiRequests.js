@@ -40,7 +40,7 @@ export const getArticulosTable = (token, setArticulosTable) =>{
 export const prueba = (token) =>{
   axios.get("https://api.sdelsol.com/admin/LeerRegistro/2021/F_CLI/CODCLI=*",
   authHeader(token)).then((response) => {
-    console.log("prueba", response.data);
+    //console.log("prueba", response.data);
 }, (error) => {
   console.log(error);
 })

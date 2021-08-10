@@ -3,7 +3,7 @@ import "../formats/invoiceStyles.css"
 import Botonera from './Botonera'
 
 
-export default function Invoice({mainData, collapsableData, resultData, setResultData, priceObject}) {
+export default function Invoice({setTotalPrice, mainData, collapsableData, resultData, setResultData, priceObject}) {
 
     const [imprimacionPrice, setImprimacionPrice] = useState(0)
     const [capasPrice, setCapasPrice] = useState(0)
@@ -12,7 +12,6 @@ export default function Invoice({mainData, collapsableData, resultData, setResul
     useEffect(()=>{
         setImprimacionPrice(()=>{
             return resultData.imprimacion.amountOfKits.reduce((acc, value, index)=>{
-                console.log(value * priceObject[mainData.resina]["Transparente"][resultData.imprimacion.sizeOfKits[index]], resultData.imprimacion.sizeOfKits[index])
                 return acc + value * priceObject[mainData.resina]["Transparente"][resultData.imprimacion.sizeOfKits[index]]
             }) 
         })
@@ -26,7 +25,21 @@ export default function Invoice({mainData, collapsableData, resultData, setResul
         setDisolventePrice(()=>{
             return resultData.disolvente * 10 //cambiar por precio de disolvente
         })
+
     }, [resultData])
+
+    useEffect(()=>{
+        setTotalPrice(imprimacionPrice+capasPrice+disolventePrice)
+    }, [imprimacionPrice,capasPrice,disolventePrice])
+
+    const getThisPrice = (layer, thisIndex)=>{
+        if(layer!="disolvente"){
+            return priceObject[mainData.resina][layer=="capas" ? mainData.color : "Transparente"][resultData.capas.sizeOfKits[thisIndex]]
+        }
+        else{
+            return 10
+        }
+    }
 
     const crearRows = (layer)=>{
         let returnRows = []
@@ -34,9 +47,11 @@ export default function Invoice({mainData, collapsableData, resultData, setResul
             returnRows.push([`Kits de ${resultData[layer].sizeOfKits[i]}`, resultData[layer].amountOfKits[i]])
         }
 
+
+
         return returnRows.map((element, i) => (
             <li key={`${layer}${i}`}>
-                <div className="listitem">{element[0]} : {element[1]}</div> <Botonera index={i} setResultData={setResultData} layer={layer} mainData={mainData}/>
+                <div className="listitem">{element[0]} : {element[1]}</div> <Botonera index={i} setResultData={setResultData} layer={layer} mainData={mainData} thisPrice={getThisPrice(layer, i)} amount={element[1]}/>
             </li>
             )
         )
@@ -59,7 +74,7 @@ export default function Invoice({mainData, collapsableData, resultData, setResul
             </div>
             <div className="disolvente">
                 <div style={{marginRight: "2vh"}}>Disolvente: {resultData.disolvente} </div>
-                <Botonera index={0} setResultData={setResultData} layer={"disolvente"} mainData={mainData} />
+                <Botonera index={0} setResultData={setResultData} layer={"disolvente"} mainData={mainData} thisPrice={getThisPrice("disolvente", 0)} amount={resultData.disolvente}/>
             </div>
             <div>{imprimacionPrice} </div>
             <div>{capasPrice} </div>

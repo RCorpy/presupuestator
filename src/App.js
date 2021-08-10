@@ -33,6 +33,13 @@ function App() {
 
   const [resultData, setResultData] = useState(importedResultData)
 
+  const [totalPrice, setTotalPrice] = useState(0)
+  const [totalPricePerM2, setTotalPricePerM2] = useState(0)
+
+  useEffect(()=>{
+    setTotalPricePerM2(totalPrice/mainData.m2)
+  },[totalPrice])
+
   useEffect(()=>{
     getResultData(setResultData, mainData, collapsableData)
   }, [mainData])
@@ -67,10 +74,10 @@ function App() {
             <Identifyers setIdentifyersData={setIdentifyersData} identifyersData={identifyersData}/>
           </div>
           <div className="rightside">
-            <Invoice mainData={mainData} collapsableData={collapsableData} resultData={resultData} setResultData={setResultData} priceObject={priceObject}/>
+            <Invoice setTotalPrice={setTotalPrice} mainData={mainData} collapsableData={collapsableData} resultData={resultData} setResultData={setResultData} priceObject={priceObject}/>
           </div>
         </div>
-        <CreatePanel pricePerM={1} total={2} gm2Imprimacion={resultData.gPerM2.imprimacion} gm2Capas={resultData.gPerM2.capas}/>
+        <CreatePanel totalPrice={totalPrice} totalPricePerM2={totalPricePerM2} gm2Imprimacion={resultData.gPerM2.imprimacion} gm2Capas={resultData.gPerM2.capas}/>
       </div>
     </React.StrictMode>
   );
