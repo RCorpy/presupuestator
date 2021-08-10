@@ -10,16 +10,22 @@ export default function Invoice({setTotalPrice, mainData, collapsableData, resul
     const [disolventePrice, setDisolventePrice] = useState(0)
 
     useEffect(()=>{
+        let toReturnPrice = 0
+
         setImprimacionPrice(()=>{
-            return resultData.imprimacion.amountOfKits.reduce((acc, value, index)=>{
-                return acc + value * priceObject[mainData.resina]["Transparente"][resultData.imprimacion.sizeOfKits[index]]
-            }) 
+            toReturnPrice = 0
+            for(let i = 0 ; i < 5; i++){
+                toReturnPrice = toReturnPrice + resultData.imprimacion.amountOfKits[i] * priceObject[mainData.resina]["Transparente"][resultData.imprimacion.sizeOfKits[i]]
+            }
+            return toReturnPrice
         })
 
         setCapasPrice(()=>{
-            return resultData.capas.amountOfKits.reduce((acc, value, index)=>{
-                return acc + value * priceObject[mainData.resina][mainData.color][resultData.capas.sizeOfKits[index]]
-            }) 
+            toReturnPrice = 0
+            for(let i = 0 ; i < 5; i++){
+                toReturnPrice = toReturnPrice + resultData.capas.amountOfKits[i] * priceObject[mainData.resina][mainData.color][resultData.capas.sizeOfKits[i]]
+            }
+            return toReturnPrice
         })
 
         setDisolventePrice(()=>{
