@@ -30,7 +30,6 @@ export const getArticulosTable = (token, setArticulosTable) =>{
     ejercicio: "2021",
     consulta: "SELECT * FROM F_ART"
   },authHeader(token)).then((response) => {
-    //console.log("getArticulosTable", response.data.resultado[0][10].dato);
     setArticulosTable(makePriceObject(response.data.resultado))
 }, (error) => {
   console.log(error);

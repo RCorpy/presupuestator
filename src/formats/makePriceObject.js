@@ -383,11 +383,11 @@ const makePriceObject = (responseObject)=>{
     console.log("PRICE OBJECT",{
         "epoxy brillo":{
             'Gris medio':{
-                6: (responseObject[131] && responseObject[131][10]) || 0,
-                12: (responseObject[132] && responseObject[132][10]) || 0,
-                18: (responseObject[133] && responseObject[133][10]) || 0,
-                24: (responseObject[134] && responseObject[134][10]) || 0,
-                30: (responseObject[135] && responseObject[135][10]) || 0
+                6: (responseObject[131] && responseObject[131][10].dato.toFixed(2)) || 0,
+                12: (responseObject[132] && responseObject[132][10].dato.toFixed(2)) || 0,
+                18: (responseObject[133] && responseObject[133][10].dato.toFixed(2)) || 0,
+                24: (responseObject[134] && responseObject[134][10].dato.toFixed(2)) || 0,
+                30: (responseObject[135] && responseObject[135][10].dato.toFixed(2)) || 0
             },
         },
     })
@@ -396,104 +396,104 @@ const makePriceObject = (responseObject)=>{
  return {
     "epoxy brillo":{
         Ocre:{
-            6: (responseObject[116] && responseObject[116][10]) || 0,
-            12: (responseObject[117] && responseObject[117][10]) || 0,
-            18: (responseObject[118] && responseObject[118][10]) || 0,
-            24: (responseObject[119] && responseObject[119][10]) || 0,
-            30: (responseObject[120] && responseObject[120][10]) || 0
+            6: (responseObject[116] && responseObject[116][10].dato.toFixed(2)) || 0,
+            12: (responseObject[117] && responseObject[117][10].dato.toFixed(2)) || 0,
+            18: (responseObject[118] && responseObject[118][10].dato.toFixed(2)) || 0,
+            24: (responseObject[119] && responseObject[119][10].dato.toFixed(2)) || 0,
+            30: (responseObject[120] && responseObject[120][10].dato.toFixed(2)) || 0
         },
         Crema:{
-            6: (responseObject[121] && responseObject[121][10]) || 0,
-            12: (responseObject[122] && responseObject[122][10]) || 0,
-            18: (responseObject[123] && responseObject[123][10]) || 0,
-            24: (responseObject[124] && responseObject[124][10]) || 0,
-            30: (responseObject[125] && responseObject[125][10]) || 0
+            6: (responseObject[121] && responseObject[121][10].dato.toFixed(2)) || 0,
+            12: (responseObject[122] && responseObject[122][10].dato.toFixed(2)) || 0,
+            18: (responseObject[123] && responseObject[123][10].dato.toFixed(2)) || 0,
+            24: (responseObject[124] && responseObject[124][10].dato.toFixed(2)) || 0,
+            30: (responseObject[125] && responseObject[125][10].dato.toFixed(2)) || 0
         },
         Transparente:{
-            6: (responseObject[126] && responseObject[126][10]) || 0,
-            12: (responseObject[127] && responseObject[127][10]) || 0,
-            18: (responseObject[128] && responseObject[128][10]) || 0,
-            24: (responseObject[129] && responseObject[129][10]) || 0,
-            30: (responseObject[130] && responseObject[130][10]) || 0
+            6: (responseObject[126] && responseObject[126][10].dato.toFixed(2)) || 0,
+            12: (responseObject[127] && responseObject[127][10].dato.toFixed(2)) || 0,
+            18: (responseObject[128] && responseObject[128][10].dato.toFixed(2)) || 0,
+            24: (responseObject[129] && responseObject[129][10].dato.toFixed(2)) || 0,
+            30: (responseObject[130] && responseObject[130][10].dato.toFixed(2)) || 0
         },
         'Gris medio':{
-            6: (responseObject[131] && responseObject[131][10]) || 0,
-            12: (responseObject[132] && responseObject[132][10]) || 0,
-            18: (responseObject[133] && responseObject[133][10]) || 0,
-            24: (responseObject[134] && responseObject[134][10]) || 0,
-            30: (responseObject[135] && responseObject[135][10]) || 0
+            6: (responseObject[131] && responseObject[131][10].dato.toFixed(2)) || 0,
+            12: (responseObject[132] && responseObject[132][10].dato.toFixed(2)) || 0,
+            18: (responseObject[133] && responseObject[133][10].dato.toFixed(2)) || 0,
+            24: (responseObject[134] && responseObject[134][10].dato.toFixed(2)) || 0,
+            30: (responseObject[135] && responseObject[135][10].dato.toFixed(2)) || 0
         },
         "Gris claro":{
-            6: (responseObject[136] && responseObject[136][10]) || 0,
-            12: (responseObject[137] && responseObject[137][10]) || 0,
-            18: (responseObject[138] && responseObject[138][10]) || 0,
-            24: (responseObject[139] && responseObject[139][10]) || 0,
-            30: (responseObject[140] && responseObject[140][10]) || 0
+            6: (responseObject[136] && responseObject[136][10].dato.toFixed(2)) || 0,
+            12: (responseObject[137] && responseObject[137][10].dato.toFixed(2)) || 0,
+            18: (responseObject[138] && responseObject[138][10].dato.toFixed(2)) || 0,
+            24: (responseObject[139] && responseObject[139][10].dato.toFixed(2)) || 0,
+            30: (responseObject[140] && responseObject[140][10].dato.toFixed(2)) || 0
         },
         'Gris oscuro':{
-            6: (responseObject[141] && responseObject[141][10]) || 0,
-            12: (responseObject[142] && responseObject[142][10]) || 0,
-            18: (responseObject[143] && responseObject[143][10]) || 0,
-            24: (responseObject[144] && responseObject[144][10]) || 0,
-            30: (responseObject[145] && responseObject[145][10]) || 0
+            6: (responseObject[141] && responseObject[141][10].dato.toFixed(2)) || 0,
+            12: (responseObject[142] && responseObject[142][10].dato.toFixed(2)) || 0,
+            18: (responseObject[143] && responseObject[143][10].dato.toFixed(2)) || 0,
+            24: (responseObject[144] && responseObject[144][10].dato.toFixed(2)) || 0,
+            30: (responseObject[145] && responseObject[145][10].dato.toFixed(2)) || 0
         },
         Antracita:{
-            6: (responseObject[146] && responseObject[146][10]) || 0,
-            12: (responseObject[147] && responseObject[147][10]) || 0,
-            18: (responseObject[148] && responseObject[148][10]) || 0,
-            24: (responseObject[149] && responseObject[149][10]) || 0,
-            30: (responseObject[150] && responseObject[150][10]) || 0
+            6: (responseObject[146] && responseObject[146][10].dato.toFixed(2)) || 0,
+            12: (responseObject[147] && responseObject[147][10].dato.toFixed(2)) || 0,
+            18: (responseObject[148] && responseObject[148][10].dato.toFixed(2)) || 0,
+            24: (responseObject[149] && responseObject[149][10].dato.toFixed(2)) || 0,
+            30: (responseObject[150] && responseObject[150][10].dato.toFixed(2)) || 0
         },
         Blanco:{
-            6: (responseObject[151] && responseObject[151][10]) || 0,
-            12: (responseObject[152] && responseObject[152][10]) || 0,
-            18: (responseObject[153] && responseObject[153][10]) || 0,
-            24: (responseObject[154] && responseObject[154][10]) || 0,
-            30: (responseObject[155] && responseObject[155][10]) || 0
+            6: (responseObject[151] && responseObject[151][10].dato.toFixed(2)) || 0,
+            12: (responseObject[152] && responseObject[152][10].dato.toFixed(2)) || 0,
+            18: (responseObject[153] && responseObject[153][10].dato.toFixed(2)) || 0,
+            24: (responseObject[154] && responseObject[154][10].dato.toFixed(2)) || 0,
+            30: (responseObject[155] && responseObject[155][10].dato.toFixed(2)) || 0
         },
         Negro:{
-            6: (responseObject[156] && responseObject[156][10]) || 0,
-            12: (responseObject[157] && responseObject[157][10]) || 0,
-            18: (responseObject[158] && responseObject[158][10]) || 0,
-            24: (responseObject[159] && responseObject[159][10]) || 0,
-            30: (responseObject[160] && responseObject[160][10]) || 0
+            6: (responseObject[156] && responseObject[156][10].dato.toFixed(2)) || 0,
+            12: (responseObject[157] && responseObject[157][10].dato.toFixed(2)) || 0,
+            18: (responseObject[158] && responseObject[158][10].dato.toFixed(2)) || 0,
+            24: (responseObject[159] && responseObject[159][10].dato.toFixed(2)) || 0,
+            30: (responseObject[160] && responseObject[160][10].dato.toFixed(2)) || 0
         },
         'Rojo oxido':{
-            6: (responseObject[161] && responseObject[161][10]) || 0,
-            12: (responseObject[162] && responseObject[162][10]) || 0,
-            18: (responseObject[163] && responseObject[163][10]) || 0,
-            24: (responseObject[164] && responseObject[164][10]) || 0,
-            30: (responseObject[165] && responseObject[165][10]) || 0
+            6: (responseObject[161] && responseObject[161][10].dato.toFixed(2)) || 0,
+            12: (responseObject[162] && responseObject[162][10].dato.toFixed(2)) || 0,
+            18: (responseObject[163] && responseObject[163][10].dato.toFixed(2)) || 0,
+            24: (responseObject[164] && responseObject[164][10].dato.toFixed(2)) || 0,
+            30: (responseObject[165] && responseObject[165][10].dato.toFixed(2)) || 0
         },
         "Azul acero":{
-            6: (responseObject[166] && responseObject[166][10]) || 0,
-            12: (responseObject[167] && responseObject[167][10]) || 0,
-            18: (responseObject[168] && responseObject[168][10]) || 0,
-            24: (responseObject[169] && responseObject[169][10]) || 0,
-            30: (responseObject[170] && responseObject[170][10]) || 0
+            6: (responseObject[166] && responseObject[166][10].dato.toFixed(2)) || 0,
+            12: (responseObject[167] && responseObject[167][10].dato.toFixed(2)) || 0,
+            18: (responseObject[168] && responseObject[168][10].dato.toFixed(2)) || 0,
+            24: (responseObject[169] && responseObject[169][10].dato.toFixed(2)) || 0,
+            30: (responseObject[170] && responseObject[170][10].dato.toFixed(2)) || 0
         },
         'Verde bosque':{
-            6: (responseObject[171] && responseObject[171][10]) || 0,
-            12: (responseObject[172] && responseObject[172][10]) || 0,
-            18: (responseObject[173] && responseObject[173][10]) || 0,
-            24: (responseObject[174] && responseObject[174][10]) || 0,
-            30: (responseObject[175] && responseObject[175][10]) || 0
+            6: (responseObject[171] && responseObject[171][10].dato.toFixed(2)) || 0,
+            12: (responseObject[172] && responseObject[172][10].dato.toFixed(2)) || 0,
+            18: (responseObject[173] && responseObject[173][10].dato.toFixed(2)) || 0,
+            24: (responseObject[174] && responseObject[174][10].dato.toFixed(2)) || 0,
+            30: (responseObject[175] && responseObject[175][10].dato.toFixed(2)) || 0
         },
         "Amarillo trafico":{
-            6: (responseObject[176] && responseObject[176][10]) || 0,
-            12: (responseObject[177] && responseObject[177][10]) || 0,
-            18: (responseObject[178] && responseObject[178][10]) || 0,
-            24: (responseObject[179] && responseObject[179][10]) || 0,
-            30: (responseObject[180] && responseObject[180][10]) || 0
+            6: (responseObject[176] && responseObject[176][10].dato.toFixed(2)) || 0,
+            12: (responseObject[177] && responseObject[177][10].dato.toFixed(2)) || 0,
+            18: (responseObject[178] && responseObject[178][10].dato.toFixed(2)) || 0,
+            24: (responseObject[179] && responseObject[179][10].dato.toFixed(2)) || 0,
+            30: (responseObject[180] && responseObject[180][10].dato.toFixed(2)) || 0
         },
       },
     "epoxy mate": {
         Ocre:{
-            5.5: (responseObject[385] && responseObject[385][10]) || 0,
-            11: (responseObject[386] && responseObject[386][10]) || 0,
-            16.5: (responseObject[387] && responseObject[387][10]) || 0,
-            22: (responseObject[388] && responseObject[388][10]) || 0,
-            27.5: (responseObject[389] && responseObject[389][10]) || 0
+            5.5: (responseObject[385] && responseObject[385][10].dato.toFixed(2)) || 0,
+            11: (responseObject[386] && responseObject[386][10].dato.toFixed(2)) || 0,
+            16.5: (responseObject[387] && responseObject[387][10].dato.toFixed(2)) || 0,
+            22: (responseObject[388] && responseObject[388][10].dato.toFixed(2)) || 0,
+            27.5: (responseObject[389] && responseObject[389][10].dato.toFixed(2)) || 0
         },
         Crema:{
             5.5: 0,
@@ -510,18 +510,18 @@ const makePriceObject = (responseObject)=>{
             27.5: 0
         },
         'Gris medio':{
-            5.5: (responseObject[395] && responseObject[395][10]) || 0,
-            11: (responseObject[396] && responseObject[396][10]) || 0,
-            16.5: (responseObject[397] && responseObject[397][10]) || 0,
-            22: (responseObject[398] && responseObject[398][10]) || 0,
-            27.5: (responseObject[399] && responseObject[399][10]) || 0
+            5.5: (responseObject[395] && responseObject[395][10].dato.toFixed(2)) || 0,
+            11: (responseObject[396] && responseObject[396][10].dato.toFixed(2)) || 0,
+            16.5: (responseObject[397] && responseObject[397][10].dato.toFixed(2)) || 0,
+            22: (responseObject[398] && responseObject[398][10].dato.toFixed(2)) || 0,
+            27.5: (responseObject[399] && responseObject[399][10].dato.toFixed(2)) || 0
         },
         "Gris claro":{
-            5.5: (responseObject[390] && responseObject[390][10]) || 0,
-            11: (responseObject[391] && responseObject[391][10]) || 0,
-            16.5: (responseObject[392] && responseObject[392][10]) || 0,
-            22: (responseObject[393] && responseObject[393][10]) || 0,
-            27.5: (responseObject[394] && responseObject[394][10]) || 0
+            5.5: (responseObject[390] && responseObject[390][10].dato.toFixed(2)) || 0,
+            11: (responseObject[391] && responseObject[391][10].dato.toFixed(2)) || 0,
+            16.5: (responseObject[392] && responseObject[392][10].dato.toFixed(2)) || 0,
+            22: (responseObject[393] && responseObject[393][10].dato.toFixed(2)) || 0,
+            27.5: (responseObject[394] && responseObject[394][10].dato.toFixed(2)) || 0
         },
         'Gris oscuro':{
             5.5: 0,
@@ -531,25 +531,25 @@ const makePriceObject = (responseObject)=>{
             27.5: 0
         },
         Antracita:{
-            5.5: (responseObject[400] && responseObject[400][10]) || 0,
-            11: (responseObject[401] && responseObject[401][10]) || 0,
-            16.5: (responseObject[402] && responseObject[402][10]) || 0,
-            22: (responseObject[403] && responseObject[403][10]) || 0,
-            27.5: (responseObject[404] && responseObject[404][10]) || 0
+            5.5: (responseObject[400] && responseObject[400][10].dato.toFixed(2)) || 0,
+            11: (responseObject[401] && responseObject[401][10].dato.toFixed(2)) || 0,
+            16.5: (responseObject[402] && responseObject[402][10].dato.toFixed(2)) || 0,
+            22: (responseObject[403] && responseObject[403][10].dato.toFixed(2)) || 0,
+            27.5: (responseObject[404] && responseObject[404][10].dato.toFixed(2)) || 0
         },
         Blanco:{
-            5.5: (responseObject[405] && responseObject[405][10]) || 0,
-            11: (responseObject[406] && responseObject[406][10]) || 0,
-            16.5: (responseObject[407] && responseObject[407][10]) || 0,
-            22: (responseObject[408] && responseObject[408][10]) || 0,
-            27.5: (responseObject[409] && responseObject[409][10]) || 0
+            5.5: (responseObject[405] && responseObject[405][10].dato.toFixed(2)) || 0,
+            11: (responseObject[406] && responseObject[406][10].dato.toFixed(2)) || 0,
+            16.5: (responseObject[407] && responseObject[407][10].dato.toFixed(2)) || 0,
+            22: (responseObject[408] && responseObject[408][10].dato.toFixed(2)) || 0,
+            27.5: (responseObject[409] && responseObject[409][10].dato.toFixed(2)) || 0
         },
         Negro:{
-            5.5: (responseObject[410] && responseObject[410][10]) || 0,
-            11: (responseObject[411] && responseObject[411][10]) || 0,
-            16.5: (responseObject[412] && responseObject[412][10]) || 0,
-            22: (responseObject[413] && responseObject[413][10]) || 0,
-            27.5: (responseObject[414] && responseObject[414][10]) || 0
+            5.5: (responseObject[410] && responseObject[410][10].dato.toFixed(2)) || 0,
+            11: (responseObject[411] && responseObject[411][10].dato.toFixed(2)) || 0,
+            16.5: (responseObject[412] && responseObject[412][10].dato.toFixed(2)) || 0,
+            22: (responseObject[413] && responseObject[413][10].dato.toFixed(2)) || 0,
+            27.5: (responseObject[414] && responseObject[414][10].dato.toFixed(2)) || 0
         },
         'Rojo oxido':{
             5.5: 0,
@@ -559,11 +559,11 @@ const makePriceObject = (responseObject)=>{
             27.5: 0
         },
         "Azul acero":{
-            5.5: (responseObject[415] && responseObject[415][10]) || 0,
-            11: (responseObject[416] && responseObject[416][10]) || 0,
-            16.5: (responseObject[417] && responseObject[417][10]) || 0,
-            22: (responseObject[418] && responseObject[418][10]) || 0,
-            27.5: (responseObject[419] && responseObject[419][10]) || 0
+            5.5: (responseObject[415] && responseObject[415][10].dato.toFixed(2)) || 0,
+            11: (responseObject[416] && responseObject[416][10].dato.toFixed(2)) || 0,
+            16.5: (responseObject[417] && responseObject[417][10].dato.toFixed(2)) || 0,
+            22: (responseObject[418] && responseObject[418][10].dato.toFixed(2)) || 0,
+            27.5: (responseObject[419] && responseObject[419][10].dato.toFixed(2)) || 0
         },
         'Verde bosque':{
             5.5: 0,
@@ -589,53 +589,53 @@ const makePriceObject = (responseObject)=>{
             25: 0
         },
         Crema:{
-            5: (responseObject[340] && responseObject[340][10]) || 0,
-            10: (responseObject[341] && responseObject[341][10]) || 0,
-            15: (responseObject[342] && responseObject[342][10]) || 0,
-            20: (responseObject[343] && responseObject[343][10]) || 0,
-            25: (responseObject[344] && responseObject[344][10]) || 0
+            5: (responseObject[340] && responseObject[340][10].dato.toFixed(2)) || 0,
+            10: (responseObject[341] && responseObject[341][10].dato.toFixed(2)) || 0,
+            15: (responseObject[342] && responseObject[342][10].dato.toFixed(2)) || 0,
+            20: (responseObject[343] && responseObject[343][10].dato.toFixed(2)) || 0,
+            25: (responseObject[344] && responseObject[344][10].dato.toFixed(2)) || 0
         },
         Transparente:{
-            5: (responseObject[335] && responseObject[335][10]) || 0,
-            10: (responseObject[336] && responseObject[336][10]) || 0,
-            15: (responseObject[337] && responseObject[337][10]) || 0,
-            20: (responseObject[338] && responseObject[338][10]) || 0,
-            25: (responseObject[339] && responseObject[339][10]) || 0
+            5: (responseObject[335] && responseObject[335][10].dato.toFixed(2)) || 0,
+            10: (responseObject[336] && responseObject[336][10].dato.toFixed(2)) || 0,
+            15: (responseObject[337] && responseObject[337][10].dato.toFixed(2)) || 0,
+            20: (responseObject[338] && responseObject[338][10].dato.toFixed(2)) || 0,
+            25: (responseObject[339] && responseObject[339][10].dato.toFixed(2)) || 0
         },
         'Gris medio':{
-            5: (responseObject[350] && responseObject[350][10]) || 0,
-            10: (responseObject[351] && responseObject[351][10]) || 0,
-            15: (responseObject[352] && responseObject[352][10]) || 0,
-            20: (responseObject[353] && responseObject[353][10]) || 0,
-            25: (responseObject[354] && responseObject[354][10]) || 0
+            5: (responseObject[350] && responseObject[350][10].dato.toFixed(2)) || 0,
+            10: (responseObject[351] && responseObject[351][10].dato.toFixed(2)) || 0,
+            15: (responseObject[352] && responseObject[352][10].dato.toFixed(2)) || 0,
+            20: (responseObject[353] && responseObject[353][10].dato.toFixed(2)) || 0,
+            25: (responseObject[354] && responseObject[354][10].dato.toFixed(2)) || 0
         },
         "Gris claro":{
-            5: (responseObject[345] && responseObject[345][10]) || 0,
-            10: (responseObject[346] && responseObject[346][10]) || 0,
-            15: (responseObject[347] && responseObject[347][10]) || 0,
-            20: (responseObject[348] && responseObject[348][10]) || 0,
-            25: (responseObject[349] && responseObject[349][10]) || 0
+            5: (responseObject[345] && responseObject[345][10].dato.toFixed(2)) || 0,
+            10: (responseObject[346] && responseObject[346][10].dato.toFixed(2)) || 0,
+            15: (responseObject[347] && responseObject[347][10].dato.toFixed(2)) || 0,
+            20: (responseObject[348] && responseObject[348][10].dato.toFixed(2)) || 0,
+            25: (responseObject[349] && responseObject[349][10].dato.toFixed(2)) || 0
         },
         'Gris oscuro':{
-            5: (responseObject[355] && responseObject[355][10]) || 0,
-            10: (responseObject[356] && responseObject[356][10]) || 0,
-            15: (responseObject[357] && responseObject[357][10]) || 0,
-            20: (responseObject[358] && responseObject[358][10]) || 0,
-            25: (responseObject[359] && responseObject[359][10]) || 0
+            5: (responseObject[355] && responseObject[355][10].dato.toFixed(2)) || 0,
+            10: (responseObject[356] && responseObject[356][10].dato.toFixed(2)) || 0,
+            15: (responseObject[357] && responseObject[357][10].dato.toFixed(2)) || 0,
+            20: (responseObject[358] && responseObject[358][10].dato.toFixed(2)) || 0,
+            25: (responseObject[359] && responseObject[359][10].dato.toFixed(2)) || 0
         },
         Antracita:{
-            5: (responseObject[360] && responseObject[360][10]) || 0,
-            10: (responseObject[361] && responseObject[361][10]) || 0,
-            15: (responseObject[362] && responseObject[362][10]) || 0,
-            20: (responseObject[363] && responseObject[363][10]) || 0,
-            25: (responseObject[364] && responseObject[364][10]) || 0
+            5: (responseObject[360] && responseObject[360][10].dato.toFixed(2)) || 0,
+            10: (responseObject[361] && responseObject[361][10].dato.toFixed(2)) || 0,
+            15: (responseObject[362] && responseObject[362][10].dato.toFixed(2)) || 0,
+            20: (responseObject[363] && responseObject[363][10].dato.toFixed(2)) || 0,
+            25: (responseObject[364] && responseObject[364][10].dato.toFixed(2)) || 0
         },
         Blanco:{
-            5: (responseObject[365] && responseObject[365][10]) || 0,
-            10: (responseObject[366] && responseObject[366][10]) || 0,
-            15: (responseObject[367] && responseObject[367][10]) || 0,
-            20: (responseObject[368] && responseObject[368][10]) || 0,
-            25: (responseObject[369] && responseObject[369][10]) || 0
+            5: (responseObject[365] && responseObject[365][10].dato.toFixed(2)) || 0,
+            10: (responseObject[366] && responseObject[366][10].dato.toFixed(2)) || 0,
+            15: (responseObject[367] && responseObject[367][10].dato.toFixed(2)) || 0,
+            20: (responseObject[368] && responseObject[368][10].dato.toFixed(2)) || 0,
+            25: (responseObject[369] && responseObject[369][10].dato.toFixed(2)) || 0
         },
         Negro:{
             5: 0,
@@ -645,25 +645,25 @@ const makePriceObject = (responseObject)=>{
             25: 0
         },
         'Rojo oxido':{
-            5: (responseObject[370] && responseObject[370][10]) || 0,
-            10: (responseObject[371] && responseObject[371][10]) || 0,
-            15: (responseObject[372] && responseObject[372][10]) || 0,
-            20: (responseObject[373] && responseObject[373][10]) || 0,
-            25: (responseObject[374] && responseObject[374][10]) || 0
+            5: (responseObject[370] && responseObject[370][10].dato.toFixed(2)) || 0,
+            10: (responseObject[371] && responseObject[371][10].dato.toFixed(2)) || 0,
+            15: (responseObject[372] && responseObject[372][10].dato.toFixed(2)) || 0,
+            20: (responseObject[373] && responseObject[373][10].dato.toFixed(2)) || 0,
+            25: (responseObject[374] && responseObject[374][10].dato.toFixed(2)) || 0
         },
         "Azul acero":{
-            5: (responseObject[375] && responseObject[375][10]) || 0,
-            10: (responseObject[376] && responseObject[376][10]) || 0,
-            15: (responseObject[377] && responseObject[377][10]) || 0,
-            20: (responseObject[378] && responseObject[378][10]) || 0,
-            25: (responseObject[379] && responseObject[379][10]) || 0
+            5: (responseObject[375] && responseObject[375][10].dato.toFixed(2)) || 0,
+            10: (responseObject[376] && responseObject[376][10].dato.toFixed(2)) || 0,
+            15: (responseObject[377] && responseObject[377][10].dato.toFixed(2)) || 0,
+            20: (responseObject[378] && responseObject[378][10].dato.toFixed(2)) || 0,
+            25: (responseObject[379] && responseObject[379][10].dato.toFixed(2)) || 0
         },
         'Verde bosque':{
-            5: (responseObject[380] && responseObject[380][10]) || 0,
-            10: (responseObject[381] && responseObject[381][10]) || 0,
-            15: (responseObject[382] && responseObject[382][10]) || 0,
-            20: (responseObject[383] && responseObject[383][10]) || 0,
-            25: (responseObject[384] && responseObject[384][10]) || 0
+            5: (responseObject[380] && responseObject[380][10].dato.toFixed(2)) || 0,
+            10: (responseObject[381] && responseObject[381][10].dato.toFixed(2)) || 0,
+            15: (responseObject[382] && responseObject[382][10].dato.toFixed(2)) || 0,
+            20: (responseObject[383] && responseObject[383][10].dato.toFixed(2)) || 0,
+            25: (responseObject[384] && responseObject[384][10].dato.toFixed(2)) || 0
         },
         "Amarillo trafico":{
             5: 0,
@@ -675,39 +675,39 @@ const makePriceObject = (responseObject)=>{
       },
     politop: {
         Ocre:{
-            5: (responseObject[231] && responseObject[231][10]) || 0,
-            10: (responseObject[232] && responseObject[232][10]) || 0,
-            15: (responseObject[233] && responseObject[233][10]) || 0,
-            20: (responseObject[234] && responseObject[234][10]) || 0,
-            25: (responseObject[235] && responseObject[235][10]) || 0
+            5: (responseObject[231] && responseObject[231][10].dato.toFixed(2)) || 0,
+            10: (responseObject[232] && responseObject[232][10].dato.toFixed(2)) || 0,
+            15: (responseObject[233] && responseObject[233][10].dato.toFixed(2)) || 0,
+            20: (responseObject[234] && responseObject[234][10].dato.toFixed(2)) || 0,
+            25: (responseObject[235] && responseObject[235][10].dato.toFixed(2)) || 0
         },
         Crema:{
-            5: (responseObject[251] && responseObject[251][10]) || 0,
-            10: (responseObject[252] && responseObject[252][10]) || 0,
-            15: (responseObject[253] && responseObject[253][10]) || 0,
-            20: (responseObject[254] && responseObject[254][10]) || 0,
-            25: (responseObject[255] && responseObject[255][10]) || 0
+            5: (responseObject[251] && responseObject[251][10].dato.toFixed(2)) || 0,
+            10: (responseObject[252] && responseObject[252][10].dato.toFixed(2)) || 0,
+            15: (responseObject[253] && responseObject[253][10].dato.toFixed(2)) || 0,
+            20: (responseObject[254] && responseObject[254][10].dato.toFixed(2)) || 0,
+            25: (responseObject[255] && responseObject[255][10].dato.toFixed(2)) || 0
         },
         Transparente:{
-            5: (responseObject[279] && responseObject[279][10]) || 0,
-            10: (responseObject[280] && responseObject[280][10]) || 0,
-            15: (responseObject[281] && responseObject[281][10]) || 0,
-            20: (responseObject[282] && responseObject[282][10]) || 0,
-            25: (responseObject[283] && responseObject[283][10]) || 0
+            5: (responseObject[279] && responseObject[279][10].dato.toFixed(2)) || 0,
+            10: (responseObject[280] && responseObject[280][10].dato.toFixed(2)) || 0,
+            15: (responseObject[281] && responseObject[281][10].dato.toFixed(2)) || 0,
+            20: (responseObject[282] && responseObject[282][10].dato.toFixed(2)) || 0,
+            25: (responseObject[283] && responseObject[283][10].dato.toFixed(2)) || 0
         },
         'Gris medio':{
-            5: (responseObject[226] && responseObject[226][10]) || 0,
-            10: (responseObject[227] && responseObject[227][10]) || 0,
-            15: (responseObject[228] && responseObject[228][10]) || 0,
-            20: (responseObject[229] && responseObject[229][10]) || 0,
-            25: (responseObject[230] && responseObject[230][10]) || 0
+            5: (responseObject[226] && responseObject[226][10].dato.toFixed(2)) || 0,
+            10: (responseObject[227] && responseObject[227][10].dato.toFixed(2)) || 0,
+            15: (responseObject[228] && responseObject[228][10].dato.toFixed(2)) || 0,
+            20: (responseObject[229] && responseObject[229][10].dato.toFixed(2)) || 0,
+            25: (responseObject[230] && responseObject[230][10].dato.toFixed(2)) || 0
         },
         "Gris claro":{
-            5: (responseObject[241] && responseObject[241][10]) || 0,
-            10: (responseObject[242] && responseObject[242][10]) || 0,
-            15: (responseObject[243] && responseObject[243][10]) || 0,
-            20: (responseObject[244] && responseObject[244][10]) || 0,
-            25: (responseObject[245] && responseObject[245][10]) || 0
+            5: (responseObject[241] && responseObject[241][10].dato.toFixed(2)) || 0,
+            10: (responseObject[242] && responseObject[242][10].dato.toFixed(2)) || 0,
+            15: (responseObject[243] && responseObject[243][10].dato.toFixed(2)) || 0,
+            20: (responseObject[244] && responseObject[244][10].dato.toFixed(2)) || 0,
+            25: (responseObject[245] && responseObject[245][10].dato.toFixed(2)) || 0
         },
         'Gris oscuro':{
             5: 0,
@@ -717,46 +717,46 @@ const makePriceObject = (responseObject)=>{
             25: 0
         },
         Antracita:{
-            5: (responseObject[246] && responseObject[246][10]) || 0,
-            10: (responseObject[247] && responseObject[247][10]) || 0,
-            15: (responseObject[248] && responseObject[248][10]) || 0,
-            20: (responseObject[249] && responseObject[249][10]) || 0,
-            25: (responseObject[250] && responseObject[250][10]) || 0
+            5: (responseObject[246] && responseObject[246][10].dato.toFixed(2)) || 0,
+            10: (responseObject[247] && responseObject[247][10].dato.toFixed(2)) || 0,
+            15: (responseObject[248] && responseObject[248][10].dato.toFixed(2)) || 0,
+            20: (responseObject[249] && responseObject[249][10].dato.toFixed(2)) || 0,
+            25: (responseObject[250] && responseObject[250][10].dato.toFixed(2)) || 0
         },
         Blanco:{
-            5: (responseObject[236] && responseObject[236][10]) || 0,
-            10: (responseObject[237] && responseObject[237][10]) || 0,
-            15: (responseObject[238] && responseObject[238][10]) || 0,
-            20: (responseObject[239] && responseObject[239][10]) || 0,
-            25: (responseObject[240] && responseObject[240][10]) || 0
+            5: (responseObject[236] && responseObject[236][10].dato.toFixed(2)) || 0,
+            10: (responseObject[237] && responseObject[237][10].dato.toFixed(2)) || 0,
+            15: (responseObject[238] && responseObject[238][10].dato.toFixed(2)) || 0,
+            20: (responseObject[239] && responseObject[239][10].dato.toFixed(2)) || 0,
+            25: (responseObject[240] && responseObject[240][10].dato.toFixed(2)) || 0
         },
         Negro:{
-            5: (responseObject[256] && responseObject[256][10]) || 0,
-            10: (responseObject[257] && responseObject[257][10]) || 0,
-            15: (responseObject[258] && responseObject[258][10]) || 0,
-            20: (responseObject[259] && responseObject[259][10]) || 0,
-            25: (responseObject[260] && responseObject[260][10]) || 0
+            5: (responseObject[256] && responseObject[256][10].dato.toFixed(2)) || 0,
+            10: (responseObject[257] && responseObject[257][10].dato.toFixed(2)) || 0,
+            15: (responseObject[258] && responseObject[258][10].dato.toFixed(2)) || 0,
+            20: (responseObject[259] && responseObject[259][10].dato.toFixed(2)) || 0,
+            25: (responseObject[260] && responseObject[260][10].dato.toFixed(2)) || 0
         },
         'Rojo oxido':{
-            5: (responseObject[261] && responseObject[261][10]) || 0,
-            10: (responseObject[262] && responseObject[262][10]) || 0,
-            15: (responseObject[263] && responseObject[263][10]) || 0,
-            20: (responseObject[264] && responseObject[264][10]) || 0,
-            25: (responseObject[265] && responseObject[265][10]) || 0
+            5: (responseObject[261] && responseObject[261][10].dato.toFixed(2)) || 0,
+            10: (responseObject[262] && responseObject[262][10].dato.toFixed(2)) || 0,
+            15: (responseObject[263] && responseObject[263][10].dato.toFixed(2)) || 0,
+            20: (responseObject[264] && responseObject[264][10].dato.toFixed(2)) || 0,
+            25: (responseObject[265] && responseObject[265][10].dato.toFixed(2)) || 0
         },
         "Azul acero":{
-            5: (responseObject[271] && responseObject[271][10]) || 0,
-            10: (responseObject[272] && responseObject[272][10]) || 0,
-            15: (responseObject[273] && responseObject[273][10]) || 0,
-            20: (responseObject[274] && responseObject[274][10]) || 0,
-            25: (responseObject[275] && responseObject[275][10]) || 0
+            5: (responseObject[271] && responseObject[271][10].dato.toFixed(2)) || 0,
+            10: (responseObject[272] && responseObject[272][10].dato.toFixed(2)) || 0,
+            15: (responseObject[273] && responseObject[273][10].dato.toFixed(2)) || 0,
+            20: (responseObject[274] && responseObject[274][10].dato.toFixed(2)) || 0,
+            25: (responseObject[275] && responseObject[275][10].dato.toFixed(2)) || 0
         },
         'Verde bosque':{
-            5: (responseObject[266] && responseObject[266][10]) || 0,
-            10: (responseObject[267] && responseObject[267][10]) || 0,
-            15: (responseObject[268] && responseObject[268][10]) || 0,
-            20: (responseObject[269] && responseObject[269][10]) || 0,
-            25: (responseObject[270] && responseObject[270][10]) || 0
+            5: (responseObject[266] && responseObject[266][10].dato.toFixed(2)) || 0,
+            10: (responseObject[267] && responseObject[267][10].dato.toFixed(2)) || 0,
+            15: (responseObject[268] && responseObject[268][10].dato.toFixed(2)) || 0,
+            20: (responseObject[269] && responseObject[269][10].dato.toFixed(2)) || 0,
+            25: (responseObject[270] && responseObject[270][10].dato.toFixed(2)) || 0
         },
         "Amarillo trafico":{
             5: 0,

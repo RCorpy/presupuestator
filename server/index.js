@@ -9,6 +9,24 @@ const PRECIO_PORTES_POR_KG = 0.33
 
 const PRIMERA_FILA_CONCEPTOS = 18
 const ULTIMA_FILA_CONCEPTOS = 43
+const BLUE = "0080FF"
+const WHITE = "ffffff"
+
+const texteator = {
+  "epoxy brillo":{
+    name: "EPOXY"
+  },
+  "epoxy mate":{
+    name: "EPOXY MATE"
+  },
+  "acrilica":{
+    name: "ACRILICA"
+  },
+  "politop":{
+    name: "POLITOP"
+  }
+}
+
 
 // add middlewares
 app.use(express.static(path.join(__dirname, "..", "build")));
@@ -44,9 +62,15 @@ app.post('/createexcel', (req, res)=>{
 
         let currentRow = PRIMERA_FILA_CONCEPTOS
 
+        const makeTitle = (titulo)=>{
+          thisSheet.cell(`B${currentRow}`).value(titulo).style("fill", BLUE).style("fontColor", WHITE)
+          currentRow++
+
+        }
+
         if(data.imprimacion){
           //titulo
-
+            makeTitle("IMPRIMACIÓN")
           //filas
 
           //hueco de harina de carzo
@@ -54,19 +78,19 @@ app.post('/createexcel', (req, res)=>{
         }
         if(data.capas){
           //titulo
-
+            makeTitle(`${data.capas} MANOS ${texteator[data.resina].name}`)
           //capas
 
         }
         if(data.resultData.disolvente){
           //titulo
-
+            makeTitle("DISOLVENTE")
           //capas
 
         }
         if(data.herramientas.rodillos || data.herramientas.basculas || data.herramientas.cubos){
           //titulo
-
+          makeTitle("HERRAMIENTAS")
           if(data.herramientas.rodillos){
             
           }

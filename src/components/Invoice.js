@@ -82,9 +82,9 @@ export default function Invoice({setTotalPrice, mainData, collapsableData, resul
                 <div style={{marginRight: "2vh"}}>Disolvente: {resultData.disolvente} </div>
                 <Botonera index={0} setResultData={setResultData} layer={"disolvente"} mainData={mainData} thisPrice={getThisPrice("disolvente", 0)} amount={resultData.disolvente}/>
             </div>
-            <div>{imprimacionPrice} </div>
-            <div>{capasPrice} </div>
-            <div>{disolventePrice}</div>
+            <div>{imprimacionPrice.toFixed(2)} </div>
+            <div>{capasPrice.toFixed(2)} </div>
+            <div>{disolventePrice.toFixed(2)}</div>
         </div>
         
     )

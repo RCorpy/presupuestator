@@ -119,7 +119,3 @@ export const getResultData = (setResult, mainData, collapsableData) => {
     //console.log("gotten result: ", result)
     setResult(result)
 }
-
-export const modifyResultData = (result, subData)=>{
-    console.log("updated result data")
-}

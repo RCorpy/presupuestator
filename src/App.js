@@ -17,7 +17,7 @@ import importedResultData from "./formats/importedResultData"
 
 import {getArticulosTable, getAuth} from './formats/apiRequests'
 
-import {getResultData, modifyResultData} from './formats/getResultData'
+import {getResultData} from './formats/getResultData'
 
 import logo from './formats/teklackelogo.png'
 
@@ -61,15 +61,11 @@ function App() {
 
   useEffect(()=>{
     setTotalPricePerM2(totalPrice/mainData.m2)
-  },[totalPrice])
+  },[priceObject, totalPrice, mainData])
 
   useEffect(()=>{
     getResultData(setResultData, mainData, collapsableData)
-  }, [mainData])
-
-  useEffect(()=>{
-    modifyResultData(resultData, collapsableData)
-  }, [mainData, collapsableData])
+  }, [priceObject, mainData])
 
   useEffect(()=>{
     getAuth(setAuth)
@@ -78,7 +74,7 @@ function App() {
   useEffect(()=>{
     if(auth){
       getArticulosTable(auth, setPriceObject)
-      console.log(priceObject)
+
     }
   }, [auth])
 

@@ -10,9 +10,9 @@ export default function CreatePanel({gatherUsefulData, totalPricePerM2, totalPri
 
     return (
         <div className="inputrow">
-            <Badge pill bg="primary" className="pillBadge" onClick={()=>expressFunc(gatherUsefulData())}>{totalPricePerM2} €/m²</Badge>
+            <Badge pill bg="primary" className="pillBadge" onClick={()=>expressFunc(gatherUsefulData())}>{totalPricePerM2.toFixed(2)} €/m²</Badge>
             
-            <Badge pill bg="dark" className="pillBadge" >{totalPrice} €</Badge>
+            <Badge pill bg="dark" className="pillBadge" >{totalPrice.toFixed(2)} €</Badge>
 
             <Badge pill bg="info" className="pillBadge" >{Math.round(gm2Imprimacion)} g/m² </Badge>
 

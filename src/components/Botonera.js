@@ -39,7 +39,7 @@ export default function Botonera({amount, thisPrice, setResultData ,index, layer
             </div>
 
             <div>{thisPrice} // </div>
-            <div> {thisPrice*amount}</div>
+            <div> {(thisPrice*amount.toFixed(2))}</div>
         </>
     )
 }
