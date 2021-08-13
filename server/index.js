@@ -65,13 +65,24 @@ app.post('/createexcel', (req, res)=>{
         const makeTitle = (titulo)=>{
           thisSheet.cell(`B${currentRow}`).value(titulo).style("fill", BLUE).style("fontColor", WHITE)
           currentRow++
+        }
 
+        const makeConceptRows = (amount, kitSize, price) =>{
+          if(amount){
+            thisSheet.cell(`B${currentRow}`).value(amount)
+            thisSheet.cell(`C${currentRow}`).value(kitSize)
+            thisSheet.cell(`D${currentRow}`).value(price)
+            currentRow++
+          }
         }
 
         if(data.imprimacion){
           //titulo
             makeTitle("IMPRIMACIÓN")
           //filas
+          for(let i=0; i<5; i++){
+            makeConceptRows(data.resultData.imprimacion.amountOfKits[i], data.resultData.imprimacion.sizeOfKits[i], data.priceObject.imprimacion[data.resultData.imprimacion.sizeOfKits[i]])
+          }
 
           //hueco de harina de carzo
           currentRow++
@@ -80,7 +91,9 @@ app.post('/createexcel', (req, res)=>{
           //titulo
             makeTitle(`${data.capas} MANOS ${texteator[data.resina].name}`)
           //capas
-
+          for(let i=0; i<5; i++){
+            makeConceptRows(data.resultData.capas.amountOfKits[i], data.resultData.capas.sizeOfKits[i], data.priceObject.capas[data.resultData.capas.sizeOfKits[i]])
+          }
         }
         if(data.resultData.disolvente){
           //titulo
