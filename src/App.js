@@ -19,6 +19,7 @@ import {getArticulosTable, getAuth} from './formats/apiRequests'
 
 import {getResultData} from './formats/getResultData'
 
+
 import logo from './formats/teklackelogo.png'
 
 function App() {
@@ -30,6 +31,12 @@ function App() {
   const [mainData, setMainData] = useState(importedMainData)
   const [collapsableData, setCollapsableData] = useState(importedCollapsableData)
   const [identifyersData, setIdentifyersData] = useState(importedIdentifyerData)
+
+  const [kgsData, setKgsData] = useState({
+    kgsImprimacion:6,
+    kgsCapas: 6,
+    minKitSize: 6
+  })
 
   const [resultData, setResultData] = useState(importedResultData)
 
@@ -47,7 +54,9 @@ function App() {
       color: mainData.color,
       concepto: identifyersData.concepto,
       nombre: identifyersData.nombre,
-      portes: collapsableData.portes,
+      kgsImprimacion: kgsData.kgsImprimacion,
+      kgsCapas: kgsData.kgsCapas,
+      //portes: collapsableData.portes,
       descuento: collapsableData.descuento,
       herramientas: collapsableData.herramientas,
       kgs: 10,
@@ -59,12 +68,19 @@ function App() {
     }
   }
 
+  /*useEffect(()=>{
+    //esto lo ha de hacer solo el componente
+    getResultData(setResultData, setKgsData, mainData, collapsableData, kgsData, resultData, false)
+  }, [kgsData])*/
+
+
+
   useEffect(()=>{
     setTotalPricePerM2(totalPrice/mainData.m2)
   },[priceObject, totalPrice, mainData])
 
   useEffect(()=>{
-    getResultData(setResultData, mainData, collapsableData)
+    getResultData(setResultData, setKgsData, mainData, collapsableData, kgsData, resultData, true)
   }, [priceObject, mainData])
 
   useEffect(()=>{
@@ -77,7 +93,7 @@ function App() {
 
     }
   }, [auth])
-
+  
 
 
   return (
@@ -89,11 +105,11 @@ function App() {
               <img src={logo} alt="teklacke logo"></img>
             </div>
             <MainData setMainData={setMainData} mainData={mainData}/>
-            <Collapsable setCollapsableData={setCollapsableData} collapsableData={collapsableData}/>
+            <Collapsable setResultData={setResultData} resultData={resultData} mainData={mainData} getResultData={getResultData} setCollapsableData={setCollapsableData} collapsableData={collapsableData} kgsData={kgsData} setKgsData={setKgsData}/>
             <Identifyers setIdentifyersData={setIdentifyersData} identifyersData={identifyersData}/>
           </div>
           <div className="rightside">
-            <Invoice setTotalPrice={setTotalPrice} mainData={mainData} collapsableData={collapsableData} resultData={resultData} setResultData={setResultData} priceObject={priceObject}/>
+            <Invoice setKgsData={setKgsData} setTotalPrice={setTotalPrice} mainData={mainData} collapsableData={collapsableData} resultData={resultData} setResultData={setResultData} priceObject={priceObject}/>
           </div>
         </div>
         <CreatePanel gatherUsefulData={gatherUsefulData} mainData={mainData} collapsableData={collapsableData} identifyersData={identifyersData} resultData={resultData} totalPrice={totalPrice} totalPricePerM2={totalPricePerM2} gm2Imprimacion={resultData.gPerM2.imprimacion} gm2Capas={resultData.gPerM2.capas}/>

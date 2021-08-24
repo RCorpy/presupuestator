@@ -1,7 +1,9 @@
 const collapsableData = {
-    portes: 17,
+    //portes: 17,
     descuento: 0.5,
     disolvente: true,
+    kgsImprimacion: 6,
+    kgsCapas: 6,
     herramientas: {
         rodillos: 1,
         basculas: 1,

@@ -3,7 +3,7 @@ import "../formats/invoiceStyles.css"
 import Botonera from './Botonera'
 
 
-export default function Invoice({setTotalPrice, mainData, collapsableData, resultData, setResultData, priceObject}) {
+export default function Invoice({setTotalPrice, mainData, collapsableData, resultData, setResultData, priceObject, setKgsData}) {
 
     const [imprimacionPrice, setImprimacionPrice] = useState(0)
     const [capasPrice, setCapasPrice] = useState(0)
@@ -57,7 +57,7 @@ export default function Invoice({setTotalPrice, mainData, collapsableData, resul
 
         return returnRows.map((element, i) => (
             <li key={`${layer}${i}`}>
-                <div className="listitem">{element[0]} : {element[1]}</div> <Botonera index={i} setResultData={setResultData} layer={layer} mainData={mainData} thisPrice={getThisPrice(layer, i)} amount={element[1]}/>
+                <div className="listitem">{element[0]} : {element[1]}</div> <Botonera index={i} setKgsData={setKgsData} setResultData={setResultData} layer={layer} mainData={mainData} thisPrice={getThisPrice(layer, i)} amount={element[1]}/>
             </li>
             )
         )

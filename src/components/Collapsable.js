@@ -2,7 +2,10 @@ import React from 'react'
 import Dropdown from 'react-bootstrap/Dropdown';
 
 
-export default function Main({setCollapsableData, collapsableData}) {
+
+export default function Main({getResultData, setResultData, resultData, mainData, setCollapsableData, collapsableData, kgsData, setKgsData}) {
+
+    
 
     const handleSetCollapsableData = (key, value) => {
         setCollapsableData((prevData)=>{
@@ -20,11 +23,39 @@ export default function Main({setCollapsableData, collapsableData}) {
         })
     }
 
+    const handleSetKgsData = (key, value) => {
+        
+        setKgsData((prevData)=>{
+            let returnValue = {...prevData}
+            returnValue[key] = value
+            return returnValue
+        })
+    }
+
     return (
         <div className="inputrow" style={{marginBottom: "15vh"}}>
             <div className="inputgroup">
-                <input type="number" id="portes" name="portes" className="inputbody" placeholder="portes" onChange={(event)=>handleSetCollapsableData("portes", event.target.value)} value={collapsableData.portes}/>
-                <label className="inputlabel" htmlFor="portes"> Portes </label>
+                <input type="number" id="kgsImprimacion" name="kgsImprimacion" className="inputbody" placeholder="kgsImprimacion" onChange={(event)=>{
+                    handleSetKgsData("kgsImprimacion", event.target.value)
+                    getResultData(setResultData, setKgsData, mainData, collapsableData, {
+                        kgsImprimacion: event.target.value,
+                        kgsCapas: kgsData.kgsCapas,
+                        minKitSize: kgsData.minKitSize
+                      }, resultData, false)
+                    }} value={kgsData.kgsImprimacion} step={kgsData.minKitSize}/>
+                <label className="inputlabel" htmlFor="kgsImprimacion"> kgsImprimacion </label>
+            </div>
+
+            <div className="inputgroup">
+                <input type="number" id="kgsCapas" name="kgsCapas" className="inputbody" placeholder="kgsCapas" onChange={(event)=>{
+                    handleSetKgsData("kgsCapas", event.target.value)
+                    getResultData(setResultData, setKgsData, mainData, collapsableData, {
+                        kgsImprimacion: kgsData.kgsImprimacion,
+                        kgsCapas: event.target.value,
+                        minKitSize: kgsData.minKitSize
+                      }, resultData, false)
+                    }} value={kgsData.kgsCapas} step={kgsData.minKitSize}/>
+                <label className="inputlabel" htmlFor="kgsCapas"> kgsCapas </label>
             </div>
             
 

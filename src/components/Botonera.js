@@ -2,7 +2,10 @@ import React from 'react'
 
 const GRAMOS_EN_UN_KG = 1000
 
-export default function Botonera({amount, thisPrice, setResultData ,index, layer, mainData}) {
+export default function Botonera({setKgsData, amount, thisPrice, setResultData ,index, layer, mainData}) {
+
+    //getResultData(setResultData, setKgsData, mainData, collapsableData, kgsData, false)
+
 
     const handleChange = (value)=>{
         setResultData((prev)=>{
@@ -26,6 +29,14 @@ export default function Botonera({amount, thisPrice, setResultData ,index, layer
 
                 toReturn.gPerM2[layer] = thisKgs/mainData.m2 * GRAMOS_EN_UN_KG * (auxObject[layer] ? 1/ auxObject[layer] : 1)
                 
+                let kgsLayer = "kgs" +layer.charAt(0).toUpperCase() + layer.slice(1)
+                setKgsData((prevKgs)=>{
+                    let kgsToReturn = {...prevKgs}
+                    kgsToReturn[kgsLayer] = prev[layer].amountOfKits.reduce((acc, element, index)=>{
+                        return acc + element*prev[layer].sizeOfKits[index]
+                    },0)
+                    return kgsToReturn
+                })
             }
             return toReturn
         })
