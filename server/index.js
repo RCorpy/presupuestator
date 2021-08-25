@@ -46,6 +46,8 @@ app.post('/createexcel', (req, res)=>{
         let thisFileName = Date.now().toString().substring(2).slice(0,-3) + ` ${data.m2}m²`
         let thisSheet = workbook.sheet("proforma")
 
+        let totalKgs = parseFloat(data.kgsImprimacion)+parseFloat(data.kgsCapas)+parseInt(data.resultData.disolvente)
+
         thisSheet.cell("C5").value(data.concepto.toUpperCase())
         thisSheet.cell("C8").value(data.nombre.toLowerCase().split(" ").map(s=>(s.charAt(0).toUpperCase()+s.slice(1))).join(" ")) //Churraken :D
         thisSheet.cell("E4").value(`Nº: ${thisFileName}`)
@@ -53,10 +55,10 @@ app.post('/createexcel', (req, res)=>{
         thisSheet.cell("E7").value(data.color.toUpperCase())
         thisSheet.cell("E5").value("Fecha: " + today.getDate() + "/" + `${today.getMonth()+1 <10 ? "0"+today.getMonth()+1 : today.getMonth()+1}` + "/" + today.getFullYear())
         thisSheet.cell("D45").value(data.descuento*100)
-        thisSheet.cell("C47").value(`Portes ${data.kgs} kgs brutos`)
-        thisSheet.cell("D47").value(data.kgs)
+        thisSheet.cell("C47").value(`Portes ${totalKgs} kgs brutos`)
+        thisSheet.cell("D47").value(totalKgs)
         thisSheet.cell("E47").value(PRECIO_PORTES_POR_KG)
-        thisSheet.cell("F47").value(data.portes >= PRECIO_PORTES_POR_KG*data.kgs ? data.portes : PRECIO_PORTES_POR_KG*data.kgs)
+        thisSheet.cell("F47").value(data.portes >= PRECIO_PORTES_POR_KG*totalKgs ? data.portes : PRECIO_PORTES_POR_KG*totalKgs)
         
         //Empezar a escribir conceptos
 
@@ -67,11 +69,106 @@ app.post('/createexcel', (req, res)=>{
           currentRow++
         }
 
-        const makeConceptRows = (amount, kitSize, price) =>{
+        const makeCapasConceptRows = (amount, kitSize, price) =>{
+
+          const capasObject = {
+            'epoxy brillo':{
+              1:"ENEPOXI HS100 MAGNUM ",
+              2:"Catalizador 5 a 1",
+              3:"COLOR 100% Sólidos (MANOS)"
+            },
+            "epoxy mate":{
+              1:"ENEPOXY HS MATE",
+              2:"Catalizador 10 a 1",
+              3:"COLOR (MANOS)"
+            },
+            'acrilica':{
+              1:"ENEKRIL",
+              2:"",
+              3:"COLOR (MANOS)"
+            },
+            'politop':{
+              1:"POLITOP",
+              2:"",
+              3:"COLOR (MANOS)"
+            }
+          }
           if(amount){
-            thisSheet.cell(`B${currentRow}`).value(amount)
-            thisSheet.cell(`C${currentRow}`).value(kitSize)
-            thisSheet.cell(`D${currentRow}`).value(price)
+            
+            thisSheet.cell(`B${currentRow}`).value((data.resina == "epoxy brillo" || data.resina =="epoxy mate" ? "KIT ": "")+kitSize+" KGS")
+            thisSheet.cell(`C${currentRow}`).value(capasObject[data.resina][1])
+            thisSheet.cell(`D${currentRow}`).value(parseFloat(amount))
+            thisSheet.cell(`E${currentRow}`).value(parseFloat(price)*parseFloat(data.multiplicador))
+            currentRow++
+
+            thisSheet.cell(`B${currentRow}`).value(capasObject[data.resina][2])
+            thisSheet.cell(`C${currentRow}`).value(capasObject[data.resina][3].replace("COLOR", data.color.toUpperCase()).replace("MANOS", data.capas>1 ? "DOS MANOS" : "UNA MANO"))
+            currentRow++
+          }
+        }
+
+        const makeImprimacionConceptRows = (amount, kitSize, price) =>{
+
+          const imprimacionObject = {
+            'epoxy brillo':{
+              1:"ENEPOXI HS100 PRIMER EPOXI RESINA",
+              2:"Catalizador 5 a 1",
+              3:"100% SOLIDOS"
+            },
+            "epoxy mate":{
+              1:"ENEPOXI HS100 PRIMER EPOXI RESINA",
+              2:"Catalizador 5 a 1",
+              3:"100% SOLIDOS"
+            },
+            'acrilica':{
+              1:"ENEKRIL PRIMER",
+              2:"",
+              3:""
+            },
+            'politop':{
+              1:"ERROR",
+              2:"ERROR",
+              3:"ERROR"
+            }
+          }
+          if(amount){
+            
+            thisSheet.cell(`B${currentRow}`).value((data.resina == "epoxy brillo" || data.resina =="epoxy mate" ? "KIT ": "")+kitSize+" KGS")
+            thisSheet.cell(`C${currentRow}`).value(imprimacionObject[data.resina][1])
+            thisSheet.cell(`D${currentRow}`).value(parseFloat(amount))
+            thisSheet.cell(`E${currentRow}`).value(parseFloat(price)*parseFloat(data.multiplicador))
+            currentRow++
+
+            thisSheet.cell(`B${currentRow}`).value(imprimacionObject[data.resina][2])
+            thisSheet.cell(`C${currentRow}`).value(imprimacionObject[data.resina][3])
+            currentRow++
+          }
+        }
+
+        const makeDisolventeConceptRow = (kitSize, price) =>{
+
+          const disolventeObject = {
+            'epoxy brillo': "ENESOL EPOXY",
+            "epoxy mate": "ENESOL EPOXY",
+            'acrilica': "ENESOL EPOXY",
+            'politop': "ENESOL EPOXY"
+          }
+          if(kitSize){
+            
+            thisSheet.cell(`B${currentRow}`).value(kitSize+" LTS")
+            thisSheet.cell(`C${currentRow}`).value(disolventeObject[data.resina])
+            thisSheet.cell(`D${currentRow}`).value(1)
+            thisSheet.cell(`E${currentRow}`).value(parseFloat(price)*parseFloat(kitSize)*parseFloat(data.multiplicador))
+            currentRow++
+          }
+        }
+        
+        const makeHerramientasConceptRow = (name, amount) => {
+          if(amount){
+            thisSheet.cell(`B${currentRow}`).value("UNIDADES")
+            thisSheet.cell(`C${currentRow}`).value(name)
+            thisSheet.cell(`D${currentRow}`).value(amount)
+            thisSheet.cell(`E${currentRow}`).value(0)
             currentRow++
           }
         }
@@ -81,7 +178,7 @@ app.post('/createexcel', (req, res)=>{
             makeTitle("IMPRIMACIÓN")
           //filas
           for(let i=0; i<5; i++){
-            makeConceptRows(data.resultData.imprimacion.amountOfKits[i], data.resultData.imprimacion.sizeOfKits[i], data.priceObject.imprimacion[data.resultData.imprimacion.sizeOfKits[i]])
+            makeImprimacionConceptRows(data.resultData.imprimacion.amountOfKits[i], data.resultData.imprimacion.sizeOfKits[i], data.priceObject.imprimacion[data.resultData.imprimacion.sizeOfKits[i]])
           }
 
           //hueco de harina de carzo
@@ -89,29 +186,29 @@ app.post('/createexcel', (req, res)=>{
         }
         if(data.capas){
           //titulo
-            makeTitle(`${data.capas} MANOS ${texteator[data.resina].name}`)
+            makeTitle(`${data.capas} MANO${data.capas>1 ? "S": ""} ${texteator[data.resina].name}`)
           //capas
           for(let i=0; i<5; i++){
-            makeConceptRows(data.resultData.capas.amountOfKits[i], data.resultData.capas.sizeOfKits[i], data.priceObject.capas[data.resultData.capas.sizeOfKits[i]])
+            makeCapasConceptRows(data.resultData.capas.amountOfKits[i], data.resultData.capas.sizeOfKits[i], data.priceObject.capas[data.resultData.capas.sizeOfKits[i]])
           }
         }
         if(data.resultData.disolvente){
           //titulo
             makeTitle("DISOLVENTE")
           //capas
-
+            makeDisolventeConceptRow(data.resultData.disolvente, 20)
         }
         if(data.herramientas.rodillos || data.herramientas.basculas || data.herramientas.cubos){
           //titulo
           makeTitle("HERRAMIENTAS")
           if(data.herramientas.rodillos){
-            
+            makeHerramientasConceptRow("RODILLOS", data.herramientas.rodillos)
           }
           if(data.herramientas.basculas){
-            
+            makeHerramientasConceptRow("BALANZA DE 2G A 5 KGS", data.herramientas.basculas)
           }
           if(data.herramientas.cubos){
-            
+            makeHerramientasConceptRow("CUBOS DE MEZCLA", data.herramientas.cubos)
           }
         }
 

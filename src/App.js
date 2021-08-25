@@ -45,6 +45,12 @@ function App() {
 
   const gatherUsefulData = ()=>{
 
+    const multiplicadorObject = {
+      "epoxy brillo":2,
+      "epoxy mate":2,
+      "acrilica":2,
+      "politop":2
+    }
 
     return {
       resina: mainData.resina,
@@ -59,7 +65,7 @@ function App() {
       //portes: collapsableData.portes,
       descuento: collapsableData.descuento,
       herramientas: collapsableData.herramientas,
-      kgs: 10,
+      multiplicador: 2 * multiplicadorObject[mainData.resina],
       priceObject: {
         imprimacion: priceObject[mainData.resina]["Transparente"],
         capas: priceObject[mainData.resina][mainData.color]
