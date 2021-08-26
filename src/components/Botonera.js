@@ -50,7 +50,7 @@ export default function Botonera({setKgsData, amount, thisPrice, setResultData ,
             </div>
 
             <div>{thisPrice} // </div>
-            <div> {(thisPrice*amount.toFixed(2))}</div>
+            <div> {((thisPrice*amount).toFixed(2))}</div>
         </>
     )
 }

@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const app = express(); // create express app
 const XlsxPopulate = require('xlsx-populate');
+const openMyFile = require('open');
 
 const userName = require("./usuario").modules.userName
 
@@ -36,6 +37,8 @@ app.use(express. json())
 app.post('/createexcel', (req, res)=>{
 
   const data = {...req.body.token}
+  let thisFileName = ""
+
   console.log("hi Rigga", data)
 
   // Load an existing workbook
@@ -43,7 +46,7 @@ app.post('/createexcel', (req, res)=>{
     .then(workbook => {
         // Modify the workbook.
         let today = new Date()
-        let thisFileName = Date.now().toString().substring(2).slice(0,-3) + ` ${data.m2}m²`
+        thisFileName = Date.now().toString().substring(2).slice(0,-3) + ` ${data.m2}m²`
         let thisSheet = workbook.sheet("proforma")
 
         let totalKgs = parseFloat(data.kgsImprimacion)+parseFloat(data.kgsCapas)+parseInt(data.resultData.disolvente)
@@ -150,8 +153,8 @@ app.post('/createexcel', (req, res)=>{
           const disolventeObject = {
             'epoxy brillo': "ENESOL EPOXY",
             "epoxy mate": "ENESOL EPOXY",
-            'acrilica': "ENESOL EPOXY",
-            'politop': "ENESOL EPOXY"
+            'acrilica': "AGUA",
+            'politop': "ENESOL POLITOP"
           }
           if(kitSize){
             
@@ -214,6 +217,10 @@ app.post('/createexcel', (req, res)=>{
 
 
         return workbook.toFileAsync(`presupuestos/${userName} ${thisFileName}.xlsx`)
+    })
+    .then(()=>{
+      console.log("trying to open")
+      openMyFile(path.join(__dirname,`/presupuestos/${userName} ${thisFileName}.xlsx`), {wait:true})
     })
     
 

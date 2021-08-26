@@ -15,7 +15,8 @@ export default function Invoice({setTotalPrice, mainData, collapsableData, resul
         setImprimacionPrice(()=>{
             toReturnPrice = 0
             for(let i = 0 ; i < 5; i++){
-                toReturnPrice = toReturnPrice + resultData.imprimacion.amountOfKits[i] * priceObject[mainData.resina]["Transparente"][resultData.imprimacion.sizeOfKits[i]]
+                toReturnPrice = toReturnPrice + (resultData.imprimacion.amountOfKits[i] * priceObject[mainData.resina]["Transparente"][resultData.imprimacion.sizeOfKits[i]])
+                
             }
             return toReturnPrice
         })
@@ -29,10 +30,10 @@ export default function Invoice({setTotalPrice, mainData, collapsableData, resul
         })
 
         setDisolventePrice(()=>{
-            return resultData.disolvente * 10 //cambiar por precio de disolvente
+            return resultData.disolvente * priceObject[mainData.resina].disolvente
         })
 
-    }, [resultData])
+    }, [resultData, priceObject])
 
     useEffect(()=>{
         setTotalPrice(imprimacionPrice+capasPrice+disolventePrice)
@@ -43,7 +44,7 @@ export default function Invoice({setTotalPrice, mainData, collapsableData, resul
             return priceObject[mainData.resina][layer=="capas" ? mainData.color : "Transparente"][resultData.capas.sizeOfKits[thisIndex]]
         }
         else{
-            return 10
+            return priceObject[mainData.resina].disolvente
         }
     }
 
@@ -82,9 +83,11 @@ export default function Invoice({setTotalPrice, mainData, collapsableData, resul
                 <div style={{marginRight: "2vh"}}>Disolvente: {resultData.disolvente} </div>
                 <Botonera index={0} setResultData={setResultData} layer={"disolvente"} mainData={mainData} thisPrice={getThisPrice("disolvente", 0)} amount={resultData.disolvente}/>
             </div>
-            <div>{imprimacionPrice.toFixed(2)} </div>
+            {
+            /*<div>{imprimacionPrice.toFixed(2)} </div>
             <div>{capasPrice.toFixed(2)} </div>
-            <div>{disolventePrice.toFixed(2)}</div>
+            <div>{disolventePrice.toFixed(2)}</div>*/
+            }
         </div>
         
     )

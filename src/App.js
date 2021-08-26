@@ -62,7 +62,7 @@ function App() {
       nombre: identifyersData.nombre,
       kgsImprimacion: kgsData.kgsImprimacion,
       kgsCapas: kgsData.kgsCapas,
-      //portes: collapsableData.portes,
+      disolventePrice: priceObject[mainData.resina].disolvente,
       descuento: collapsableData.descuento,
       herramientas: collapsableData.herramientas,
       multiplicador: 2 * multiplicadorObject[mainData.resina],
@@ -74,21 +74,6 @@ function App() {
     }
   }
 
-  /*useEffect(()=>{
-    //esto lo ha de hacer solo el componente
-    getResultData(setResultData, setKgsData, mainData, collapsableData, kgsData, resultData, false)
-  }, [kgsData])*/
-
-
-
-  useEffect(()=>{
-    setTotalPricePerM2(totalPrice/mainData.m2)
-  },[priceObject, totalPrice, mainData])
-
-  useEffect(()=>{
-    getResultData(setResultData, setKgsData, mainData, collapsableData, kgsData, resultData, true)
-  }, [priceObject, mainData])
-
   useEffect(()=>{
     getAuth(setAuth)
   },[])
@@ -96,11 +81,16 @@ function App() {
   useEffect(()=>{
     if(auth){
       getArticulosTable(auth, setPriceObject)
-
     }
   }, [auth])
   
+  useEffect(()=>{
+    getResultData(setResultData, setKgsData, mainData, collapsableData, kgsData, resultData, true)
+  }, [priceObject, mainData])
 
+  useEffect(()=>{
+    setTotalPricePerM2(totalPrice/mainData.m2)
+  },[priceObject, totalPrice, mainData])
 
   return (
     <React.StrictMode>

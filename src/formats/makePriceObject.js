@@ -381,6 +381,7 @@ const makePriceObject = (responseObject)=>{
  // if 0 es que no existe => devolver 0
 
     console.log("PRICE OBJECT",{
+        disolvente: (responseObject[49] && responseObject[49][10].dato.toFixed(2)) || 0,
         "epoxy brillo":{
             Ocre:{
                 6: (responseObject[116 -5] && responseObject[116-5][10].dato.toFixed(2)) || 0,
@@ -475,6 +476,7 @@ const makePriceObject = (responseObject)=>{
             },
           },
         "epoxy mate": {
+            disolvente: (responseObject[49] && responseObject[49][10].dato.toFixed(2)) || 0,
             Ocre:{
                 5.5: (responseObject[385 -5] && responseObject[385-5][10].dato.toFixed(2)) || 0,
                 11: (responseObject[386 -5] && responseObject[386-5][10].dato.toFixed(2)) || 0,
@@ -568,6 +570,7 @@ const makePriceObject = (responseObject)=>{
             },
           },
         acrilica:{
+            disolvente: 0,
             Ocre:{
                 5: 0,
                 10: 0,
@@ -661,6 +664,7 @@ const makePriceObject = (responseObject)=>{
             },
           },
         politop: {
+            disolvente: (responseObject[48] && responseObject[48][10].dato.toFixed(2)) || 0,
             Ocre:{
                 5: (responseObject[231 -5] && responseObject[231-5][10].dato.toFixed(2)) || 0,
                 10: (responseObject[232 -5] && responseObject[232-5][10].dato.toFixed(2)) || 0,
@@ -758,6 +762,7 @@ const makePriceObject = (responseObject)=>{
  
  return {
     "epoxy brillo":{
+        disolvente: (responseObject[49] && responseObject[49][10].dato.toFixed(2)) || 0,
         Ocre:{
             6: (responseObject[116 -5] && responseObject[116-5][10].dato.toFixed(2)) || 0,
             12: (responseObject[117 -5] && responseObject[117-5][10].dato.toFixed(2)) || 0,
@@ -851,6 +856,7 @@ const makePriceObject = (responseObject)=>{
         },
       },
     "epoxy mate": {
+        disolvente: (responseObject[49] && responseObject[49][10].dato.toFixed(2)) || 0,
         Ocre:{
             5.5: (responseObject[385 -5] && responseObject[385-5][10].dato.toFixed(2)) || 0,
             11: (responseObject[386 -5] && responseObject[386-5][10].dato.toFixed(2)) || 0,
@@ -944,6 +950,7 @@ const makePriceObject = (responseObject)=>{
         },
       },
     acrilica:{
+        disolvente:  0,
         Ocre:{
             5: 0,
             10: 0,
@@ -1037,6 +1044,7 @@ const makePriceObject = (responseObject)=>{
         },
       },
     politop: {
+        disolvente: (responseObject[48] && responseObject[48][10].dato.toFixed(2)) || 0,
         Ocre:{
             5: (responseObject[231 -5] && responseObject[231-5][10].dato.toFixed(2)) || 0,
             10: (responseObject[232 -5] && responseObject[232-5][10].dato.toFixed(2)) || 0,

@@ -48,6 +48,7 @@ export default function Main({setMainData, mainData}) {
                     <Dropdown.Item onClick={()=>{handleSetMainData("capas", "02")}}>2 manos</Dropdown.Item>
                     <Dropdown.Item onClick={()=>{handleSetMainData("capas", "01")}}>1 mano</Dropdown.Item>
                     <Dropdown.Item onClick={()=>{handleSetMainData("capas", "10")}}>Imprimación</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>{handleSetMainData("capas", "11")}}>Imprimación y 1 capa</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
             <Form.Select className="inputgroup2" value={mainData.color} onChange={(event)=>{
