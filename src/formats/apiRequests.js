@@ -48,7 +48,7 @@ export const pruebaPresupuesto = (token) =>{
       },
       {
           "columna": "FECPRE",
-          "dato": "" // lol
+          "dato": "" // lol, voy a tener que preguntar
       },
       {
           "columna": "CODPRE",
