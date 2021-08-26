@@ -1,5 +1,6 @@
 Para instalar
 
+-> instalar npm y git
 -> clonar repo
 -> añadir archivo connectionInfo.js dentro de la carpeta src
 -> tener node dentro de path en windows (C:\Program Files\nodejs normalmente)
