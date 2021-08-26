@@ -15,7 +15,7 @@ import importedCollapsableData from "./formats/importedCollapsableData"
 import importedIdentifyerData from "./formats/importedIdentifyersData"
 import importedResultData from "./formats/importedResultData"
 
-import {getArticulosTable, getAuth} from './formats/apiRequests'
+import {getArticulosTable, getAuth, pruebaPresupuesto} from './formats/apiRequests'
 
 import {getResultData} from './formats/getResultData'
 
@@ -108,7 +108,7 @@ function App() {
             <Invoice setKgsData={setKgsData} setTotalPrice={setTotalPrice} mainData={mainData} collapsableData={collapsableData} resultData={resultData} setResultData={setResultData} priceObject={priceObject}/>
           </div>
         </div>
-        <CreatePanel gatherUsefulData={gatherUsefulData} mainData={mainData} collapsableData={collapsableData} identifyersData={identifyersData} resultData={resultData} totalPrice={totalPrice} totalPricePerM2={totalPricePerM2} gm2Imprimacion={resultData.gPerM2.imprimacion} gm2Capas={resultData.gPerM2.capas}/>
+        <CreatePanel pruebaPresupuesto={()=>pruebaPresupuesto(auth)} gatherUsefulData={gatherUsefulData} mainData={mainData} collapsableData={collapsableData} identifyersData={identifyersData} resultData={resultData} totalPrice={totalPrice} totalPricePerM2={totalPricePerM2} gm2Imprimacion={resultData.gPerM2.imprimacion} gm2Capas={resultData.gPerM2.capas}/>
       </div>
     </React.StrictMode>
   );

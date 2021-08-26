@@ -36,11 +36,41 @@ export const getArticulosTable = (token, setArticulosTable) =>{
 })
 }
 
-export const prueba = (token) =>{
-  axios.get("https://api.sdelsol.com/admin/LeerRegistro/2021/F_CLI/CODCLI=*",
+export const pruebaPresupuesto = (token) =>{
+
+  axios.post("https://api.sdelsol.com/admin/EscribirRegistro",{
+    ejercicio: "2021",
+    tabla: "F_PRE",
+    registro: [
+      {
+          "columna": "TIPPRE",
+          "dato": 2
+      },
+      {
+          "columna": "FECPRE",
+          "dato": "" // lol
+      },
+      {
+          "columna": "CODPRE",
+          "dato": 8 //lol
+      },
+        {
+          "columna": "REFPRE",
+          "dato": "REFERENCIA"
+      },
+        {//descuento
+          "columna": "PDTO1PRE",
+          "dato": 50
+      },
+        {//portes
+          "columna": "IPOR1PRE",
+          "dato": 20
+      }
+    ]
+  },
   authHeader(token)).then((response) => {
-    //console.log("prueba", response.data);
+    console.log("pruebaPresupuesto", response.data);
 }, (error) => {
-  console.log(error);
+  console.log("prueba presupuesto error",error);
 })
 }

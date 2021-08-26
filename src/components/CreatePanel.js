@@ -1,12 +1,15 @@
 import React, {useState} from 'react'
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
-import {getAuth, getArticulosTable, prueba} from '../formats/apiRequests'
 import {expressFunc} from '../formats/expressRequests'
 
-export default function CreatePanel({gatherUsefulData, totalPricePerM2, totalPrice, gm2Imprimacion, gm2Capas}) {
+export default function CreatePanel({pruebaPresupuesto, gatherUsefulData, totalPricePerM2, totalPrice, gm2Imprimacion, gm2Capas}) {
 
-    const [auth, setAuth] = useState("")
+    const handleCreate = () =>{
+        expressFunc(gatherUsefulData())
+        pruebaPresupuesto()
+        
+    }
 
     return (
         <div className="inputrow">
@@ -18,7 +21,7 @@ export default function CreatePanel({gatherUsefulData, totalPricePerM2, totalPri
 
             <Badge pill bg="warning" style={{color: "black"}} className="pillBadge">{Math.round(gm2Capas)} g/m² </Badge>
 
-            <Button variant="danger" onClick={()=>expressFunc(gatherUsefulData())}>CREAR</Button>
+            <Button variant="danger" onClick={()=>handleCreate()}>CREAR</Button>
         </div>
     )
 }
