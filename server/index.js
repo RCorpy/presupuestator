@@ -56,7 +56,7 @@ app.post('/createexcel', (req, res)=>{
         thisSheet.cell("E4").value(`Nº: ${thisFileName}`)
         thisSheet.cell("B15").value( `${data.m2}m²`)
         thisSheet.cell("E7").value(data.color.toUpperCase())
-        thisSheet.cell("E5").value("Fecha: " + today.getDate() + "/" + `${today.getMonth()+1 <10 ? "0"+today.getMonth()+1 : today.getMonth()+1}` + "/" + today.getFullYear())
+        thisSheet.cell("E5").value("Fecha: " + today.getDate() + "/" + `${today.getMonth()+1 <10 ? "0"+(today.getMonth()+1) : (today.getMonth()+1)}` + "/" + today.getFullYear())
         thisSheet.cell("D45").value(data.descuento*100)
         thisSheet.cell("C47").value(`Portes ${totalKgs} kgs brutos`)
         thisSheet.cell("D47").value(totalKgs)
