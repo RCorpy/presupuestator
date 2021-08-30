@@ -162,6 +162,7 @@ app.post('/createexcel', (req, res)=>{
             thisSheet.cell(`C${currentRow}`).value(disolventeObject[data.resina])
             thisSheet.cell(`D${currentRow}`).value(1)
             thisSheet.cell(`E${currentRow}`).value(parseFloat(price)*parseFloat(kitSize)*parseFloat(data.multiplicador))
+            console.log(parseFloat(price),parseFloat(kitSize),parseFloat(data.multiplicador))
             currentRow++
           }
         }
@@ -199,7 +200,7 @@ app.post('/createexcel', (req, res)=>{
           //titulo
             makeTitle("DISOLVENTE")
           //capas
-            makeDisolventeConceptRow(data.resultData.disolvente, 20)
+            makeDisolventeConceptRow(data.resultData.disolvente, data.disolventePrice)
         }
         if(data.herramientas.rodillos || data.herramientas.basculas || data.herramientas.cubos){
           //titulo
