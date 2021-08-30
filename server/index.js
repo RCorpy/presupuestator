@@ -162,7 +162,6 @@ app.post('/createexcel', (req, res)=>{
             thisSheet.cell(`C${currentRow}`).value(disolventeObject[data.resina])
             thisSheet.cell(`D${currentRow}`).value(1)
             thisSheet.cell(`E${currentRow}`).value(parseFloat(price)*parseFloat(kitSize)*parseFloat(data.multiplicador))
-            console.log(parseFloat(price),parseFloat(kitSize),parseFloat(data.multiplicador))
             currentRow++
           }
         }
