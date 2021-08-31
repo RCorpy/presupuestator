@@ -62,7 +62,6 @@ app.post('/createexcel', (req, res)=>{
         thisSheet.cell("C47").value(`Portes ${totalKgs} kgs brutos`)
         thisSheet.cell("D47").value(totalKgs)
         thisSheet.cell("E47").value(PRECIO_PORTES_POR_KG)
-        thisSheet.cell("F47").value(data.portes >= PRECIO_PORTES_POR_KG*totalKgs ? data.portes : PRECIO_PORTES_POR_KG*totalKgs)
         
         //Empezar a escribir conceptos
 
@@ -162,7 +161,7 @@ app.post('/createexcel', (req, res)=>{
             thisSheet.cell(`B${currentRow}`).value(1+" LTS")
             thisSheet.cell(`C${currentRow}`).value(disolventeObject[data.resina])
             thisSheet.cell(`D${currentRow}`).value(kitSize)
-            thisSheet.cell(`E${currentRow}`).value(parseFloat(price)*parseFloat(kitSize)*parseFloat(data.multiplicador))
+            thisSheet.cell(`E${currentRow}`).value(parseFloat(price)*parseFloat(data.multiplicador))
             currentRow++
           }
         }
