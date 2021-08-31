@@ -14,6 +14,7 @@ import importedMainData from "./formats/importedMainData"
 import importedCollapsableData from "./formats/importedCollapsableData"
 import importedIdentifyerData from "./formats/importedIdentifyersData"
 import importedResultData from "./formats/importedResultData"
+import multiplicadorObject from "./multiplicador"
 
 import {getArticulosTable, getAuth, pruebaPresupuesto} from './formats/apiRequests'
 
@@ -25,6 +26,11 @@ import logo from './formats/teklackelogo.png'
 function App() {
 
   const [priceObject, setPriceObject] = useState(importedPriceObject)
+  const [finalPrices, setFinalPrices] = useState({
+    imprimacion: [0,0,0,0,0],
+    capas: [0,0,0,0,0],
+    disolvente: 0
+  })
   const [auth, setAuth] = useState("")
 
 
@@ -45,12 +51,8 @@ function App() {
 
   const gatherUsefulData = ()=>{
 
-    const multiplicadorObject = {
-      "epoxy brillo":2,
-      "epoxy mate":2,
-      "acrilica":2,
-      "politop":2
-    }
+    console.log("we will send this", makeFinalPriceObject(finalPrices))
+    console.log("we send this", priceObject[mainData.resina]["Transparente"])
 
     return {
       resina: mainData.resina,
@@ -62,16 +64,29 @@ function App() {
       nombre: identifyersData.nombre,
       kgsImprimacion: kgsData.kgsImprimacion,
       kgsCapas: kgsData.kgsCapas,
-      disolventePrice: priceObject[mainData.resina].disolvente,
+      disolventePrice: finalPrices.disolvente,
       descuento: collapsableData.descuento,
       herramientas: collapsableData.herramientas,
       multiplicador: 2 * multiplicadorObject[mainData.resina],
-      priceObject: {
-        imprimacion: priceObject[mainData.resina]["Transparente"],
-        capas: priceObject[mainData.resina][mainData.color]
-      },
+      priceObject: makeFinalPriceObject(finalPrices),
       resultData: resultData
     }
+  }
+
+  const makeFinalPriceObject = (myFinalPrices) => {
+
+    let returnObject = {
+      imprimacion: {},
+      capas: {}
+    }
+
+    for(let i=1; i<6 ; i++){
+      returnObject.imprimacion[i*kgsData.minKitSize] = myFinalPrices.imprimacion[i-1]
+      returnObject.capas[i*kgsData.minKitSize] = myFinalPrices.capas[i-1]
+    }
+
+    return returnObject
+
   }
 
   useEffect(()=>{
@@ -84,9 +99,12 @@ function App() {
     }
   }, [auth])
   
+
+
   useEffect(()=>{
     getResultData(setResultData, setKgsData, mainData, collapsableData, kgsData, resultData, true)
   }, [priceObject, mainData])
+
 
   useEffect(()=>{
     setTotalPricePerM2(totalPrice/mainData.m2)
@@ -105,10 +123,10 @@ function App() {
             <Identifyers setIdentifyersData={setIdentifyersData} identifyersData={identifyersData}/>
           </div>
           <div className="rightside">
-            <Invoice setKgsData={setKgsData} setTotalPrice={setTotalPrice} mainData={mainData} collapsableData={collapsableData} resultData={resultData} setResultData={setResultData} priceObject={priceObject}/>
+            <Invoice finalPrices={finalPrices} setFinalPrices={setFinalPrices} setKgsData={setKgsData} setTotalPrice={setTotalPrice} mainData={mainData}  resultData={resultData} setResultData={setResultData} priceObject={priceObject}/>
           </div>
         </div>
-        <CreatePanel pruebaPresupuesto={()=>pruebaPresupuesto(auth)} gatherUsefulData={gatherUsefulData} mainData={mainData} collapsableData={collapsableData} identifyersData={identifyersData} resultData={resultData} totalPrice={totalPrice} totalPricePerM2={totalPricePerM2} gm2Imprimacion={resultData.gPerM2.imprimacion} gm2Capas={resultData.gPerM2.capas}/>
+        <CreatePanel pruebaPresupuesto={()=>pruebaPresupuesto(auth)} gatherUsefulData={gatherUsefulData} mainData={mainData} identifyersData={identifyersData} resultData={resultData} totalPrice={totalPrice} totalPricePerM2={totalPricePerM2} gm2Imprimacion={resultData.gPerM2.imprimacion} gm2Capas={resultData.gPerM2.capas}/>
       </div>
     </React.StrictMode>
   );

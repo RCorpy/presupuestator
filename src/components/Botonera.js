@@ -1,11 +1,42 @@
 import React from 'react'
+import { useEffect } from 'react'
 
 const GRAMOS_EN_UN_KG = 1000
 
-export default function Botonera({setKgsData, amount, thisPrice, setResultData ,index, layer, mainData}) {
+export default function Botonera({setKgsData, amount, thisPrice, setResultData ,index, layer, mainData, finalPrices, setFinalPrices}) {
 
     //getResultData(setResultData, setKgsData, mainData, collapsableData, kgsData, false)
 
+    useEffect(()=>{
+        updateFinalPrices()
+    },[amount, thisPrice])
+
+    const updateFinalPrices = () => {
+        setFinalPrices((prev)=>{
+            let newFinalPrices = {...prev}
+            if(layer=="disolvente"){
+                newFinalPrices[layer] = thisPrice*amount
+            }
+            else{
+                newFinalPrices[layer][index] = thisPrice*amount
+            }
+            return newFinalPrices
+        })
+    }
+
+    const handleFinalPrices = (e) =>{
+        setFinalPrices((prev)=>{
+            let newFinalPrices = {...prev}
+            if(layer=="disolvente"){
+                newFinalPrices[layer] = e.target.value
+            }
+            else{
+                newFinalPrices[layer][index] = e.target.value
+            }
+            return newFinalPrices
+        })
+        
+    }
 
     const handleChange = (value)=>{
         setResultData((prev)=>{
@@ -40,6 +71,7 @@ export default function Botonera({setKgsData, amount, thisPrice, setResultData ,
             }
             return toReturn
         })
+        updateFinalPrices()
     }
 
     return (
@@ -48,8 +80,7 @@ export default function Botonera({setKgsData, amount, thisPrice, setResultData ,
                 <button onClick={()=>handleChange(1)}>+</button>
                 <button onClick={()=>handleChange(-1)}>-</button>  
             </div>
-
-            <div>{thisPrice} // </div>
+            <input type="number" value={layer=="disolvente" ? finalPrices[layer] : finalPrices[layer][index]} onChange={(e)=>handleFinalPrices(e)}></input>
             <div> {((thisPrice*amount).toFixed(2))}</div>
         </>
     )

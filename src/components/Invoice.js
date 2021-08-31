@@ -3,7 +3,7 @@ import "../formats/invoiceStyles.css"
 import Botonera from './Botonera'
 
 
-export default function Invoice({setTotalPrice, mainData, collapsableData, resultData, setResultData, priceObject, setKgsData}) {
+export default function Invoice({finalPrices, setFinalPrices, setTotalPrice, mainData, resultData, setResultData, priceObject, setKgsData}) {
 
     const [imprimacionPrice, setImprimacionPrice] = useState(0)
     const [capasPrice, setCapasPrice] = useState(0)
@@ -58,7 +58,9 @@ export default function Invoice({setTotalPrice, mainData, collapsableData, resul
 
         return returnRows.map((element, i) => (
             <li key={`${layer}${i}`}>
-                <div className="listitem">{element[0]} : {element[1]}</div> <Botonera index={i} setKgsData={setKgsData} setResultData={setResultData} layer={layer} mainData={mainData} thisPrice={getThisPrice(layer, i)} amount={element[1]}/>
+                <div className="listitem">{element[0]} : {element[1]}</div>
+                <Botonera index={i} setFinalPrices={setFinalPrices} finalPrices={finalPrices} setKgsData={setKgsData} setResultData={setResultData} layer={layer} mainData={mainData} thisPrice={getThisPrice(layer, i)} amount={element[1]}/>
+                
             </li>
             )
         )
@@ -81,7 +83,7 @@ export default function Invoice({setTotalPrice, mainData, collapsableData, resul
             </div>
             <div className="disolvente">
                 <div style={{marginRight: "2vh"}}>Disolvente: {resultData.disolvente} </div>
-                <Botonera index={0} setResultData={setResultData} layer={"disolvente"} mainData={mainData} thisPrice={getThisPrice("disolvente", 0)} amount={resultData.disolvente}/>
+                <Botonera index={0} finalPrices={finalPrices} setFinalPrices={setFinalPrices} setResultData={setResultData} layer={"disolvente"} mainData={mainData} thisPrice={getThisPrice("disolvente", 0)} amount={resultData.disolvente}/>
             </div>
             {
             /*<div>{imprimacionPrice.toFixed(2)} </div>
