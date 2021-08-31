@@ -159,9 +159,9 @@ app.post('/createexcel', (req, res)=>{
           }
           if(kitSize){
             
-            thisSheet.cell(`B${currentRow}`).value(kitSize+" LTS")
+            thisSheet.cell(`B${currentRow}`).value(1+" LTS")
             thisSheet.cell(`C${currentRow}`).value(disolventeObject[data.resina])
-            thisSheet.cell(`D${currentRow}`).value(1)
+            thisSheet.cell(`D${currentRow}`).value(kitSize)
             thisSheet.cell(`E${currentRow}`).value(parseFloat(price)*parseFloat(kitSize)*parseFloat(data.multiplicador))
             currentRow++
           }
@@ -205,14 +205,14 @@ app.post('/createexcel', (req, res)=>{
         if(data.herramientas.rodillos || data.herramientas.basculas || data.herramientas.cubos){
           //titulo
           makeTitle("HERRAMIENTAS")
-          if(data.herramientas.rodillos){
-            makeHerramientasConceptRow("RODILLOS", data.herramientas.rodillos)
-          }
           if(data.herramientas.basculas){
             makeHerramientasConceptRow("BALANZA DE 2G A 5 KGS", data.herramientas.basculas)
           }
           if(data.herramientas.cubos){
             makeHerramientasConceptRow("CUBOS DE MEZCLA", data.herramientas.cubos)
+          }
+          if(data.herramientas.rodillos){
+            makeHerramientasConceptRow("RODILLOS", data.herramientas.rodillos)
           }
         }
 
