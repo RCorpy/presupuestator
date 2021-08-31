@@ -5,6 +5,7 @@ const XlsxPopulate = require('xlsx-populate');
 const openMyFile = require('open');
 
 const userName = require("./usuario").modules.userName
+const customPath = require("./usuario").modules.customPath
 
 const PRECIO_PORTES_POR_KG = 0.33
 
@@ -216,11 +217,11 @@ app.post('/createexcel', (req, res)=>{
         }
 
 
-        return workbook.toFileAsync(`presupuestos/${userName} ${thisFileName}.xlsx`)
+        return workbook.toFileAsync(customPath ? customPath + `${userName} ${thisFileName}.xlsx` : `presupuestos/${userName} ${thisFileName}.xlsx`)
     })
     .then(()=>{
-      console.log("trying to open")
-      openMyFile(path.join(__dirname,`/presupuestos/${userName} ${thisFileName}.xlsx`), {wait:true})
+      console.log("trying to open", customPath ? customPath + `${userName} ${thisFileName}.xlsx` : path.join(__dirname,`/presupuestos/${userName} ${thisFileName}.xlsx`))
+      openMyFile( customPath ? customPath+ `${userName} ${thisFileName}.xlsx` : path.join(__dirname,`/presupuestos/${userName} ${thisFileName}.xlsx`), {wait:true})
     })
     
 
