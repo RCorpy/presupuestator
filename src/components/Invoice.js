@@ -35,9 +35,9 @@ export default function Invoice({finalPrices, setFinalPrices, setTotalPrice, mai
 
     }, [resultData, priceObject])
 
-    useEffect(()=>{
+    /*useEffect(()=>{
         setTotalPrice(imprimacionPrice+capasPrice+disolventePrice)
-    }, [imprimacionPrice,capasPrice,disolventePrice])
+    }, [imprimacionPrice,capasPrice,disolventePrice])*/
 
     const getThisPrice = (layer, thisIndex)=>{
         if(layer!="disolvente"){

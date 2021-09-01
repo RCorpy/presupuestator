@@ -51,9 +51,6 @@ function App() {
 
   const gatherUsefulData = ()=>{
 
-    console.log("we will send this", makeFinalPriceObject(finalPrices))
-    console.log("we send this", priceObject[mainData.resina]["Transparente"])
-
     return {
       resina: mainData.resina,
       m2:mainData.m2,
@@ -106,9 +103,15 @@ function App() {
   }, [priceObject, mainData])
 
 
-  useEffect(()=>{
+  /*useEffect(()=>{
     setTotalPricePerM2(totalPrice/mainData.m2)
-  },[priceObject, totalPrice, mainData])
+  },[priceObject, totalPrice, mainData])*/
+
+  useEffect(()=>{
+    let badgeTotalPrice = parseFloat(finalPrices.imprimacion.reduce((acc,ele)=>(acc+ele)))+parseFloat(finalPrices.capas.reduce((acc,ele)=>(acc+ele)))+parseFloat(finalPrices.disolvente)
+    setTotalPrice(badgeTotalPrice)
+    setTotalPricePerM2(badgeTotalPrice/mainData.m2)
+  },[finalPrices])
 
   return (
     <React.StrictMode>
