@@ -64,7 +64,6 @@ function App() {
       disolventePrice: finalPrices.disolvente,
       descuento: collapsableData.descuento,
       herramientas: collapsableData.herramientas,
-      multiplicador: 2 * multiplicadorObject[mainData.resina],
       priceObject: makeFinalPriceObject(finalPrices),
       resultData: resultData
     }
@@ -108,7 +107,8 @@ function App() {
   },[priceObject, totalPrice, mainData])*/
 
   useEffect(()=>{
-    let badgeTotalPrice = parseFloat(finalPrices.imprimacion.reduce((acc,ele)=>(acc+ele)))+parseFloat(finalPrices.capas.reduce((acc,ele)=>(acc+ele)))+parseFloat(finalPrices.disolvente)
+    //console.log(parseFloat(finalPrices.imprimacion.reduce((acc,ele)=>(acc+ele))), parseFloat(finalPrices.capas.reduce((acc,ele)=>(acc+ele))) , parseFloat(finalPrices.disolvente) )
+    let badgeTotalPrice = (parseFloat(finalPrices.imprimacion.reduce((acc,ele)=>(acc+(ele ? ele : 0))))+parseFloat(finalPrices.capas.reduce((acc,ele)=>(acc+(ele ? ele : 0))))+parseFloat(finalPrices.disolvente ? finalPrices.disolvente : 0))/2
     setTotalPrice(badgeTotalPrice)
     setTotalPricePerM2(badgeTotalPrice/mainData.m2)
   },[finalPrices])

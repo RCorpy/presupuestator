@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react'
+import multiplicadorObject from "../multiplicador"
 
 const GRAMOS_EN_UN_KG = 1000
 
@@ -12,13 +13,14 @@ export default function Botonera({setKgsData, amount, thisPrice, setResultData ,
     },[amount, thisPrice])
 
     const updateFinalPrices = () => {
+        
         setFinalPrices((prev)=>{
             let newFinalPrices = {...prev}
             if(layer=="disolvente"){
-                newFinalPrices[layer] = thisPrice*amount
+                newFinalPrices[layer] = thisPrice*amount*multiplicadorObject[mainData.resina]*2
             }
             else{
-                newFinalPrices[layer][index] = thisPrice*amount
+                newFinalPrices[layer][index] = thisPrice*amount*multiplicadorObject[mainData.resina]*2
             }
             return newFinalPrices
         })
@@ -28,10 +30,10 @@ export default function Botonera({setKgsData, amount, thisPrice, setResultData ,
         setFinalPrices((prev)=>{
             let newFinalPrices = {...prev}
             if(layer=="disolvente"){
-                newFinalPrices[layer] = e.target.value
+                newFinalPrices[layer] = parseFloat(e.target.value)
             }
             else{
-                newFinalPrices[layer][index] = e.target.value
+                newFinalPrices[layer][index] = parseFloat(e.target.value)
             }
             return newFinalPrices
         })

@@ -101,7 +101,7 @@ app.post('/createexcel', (req, res)=>{
             thisSheet.cell(`B${currentRow}`).value((data.resina == "epoxy brillo" || data.resina =="epoxy mate" ? "KIT ": "")+kitSize+" KGS")
             thisSheet.cell(`C${currentRow}`).value(capasObject[data.resina][1])
             thisSheet.cell(`D${currentRow}`).value(parseFloat(amount))
-            thisSheet.cell(`E${currentRow}`).value(parseFloat(price)*parseFloat(data.multiplicador))
+            thisSheet.cell(`E${currentRow}`).value(parseFloat(price))
             currentRow++
 
             thisSheet.cell(`B${currentRow}`).value(capasObject[data.resina][2])
@@ -139,7 +139,7 @@ app.post('/createexcel', (req, res)=>{
             thisSheet.cell(`B${currentRow}`).value((data.resina == "epoxy brillo" || data.resina =="epoxy mate" ? "KIT ": "")+kitSize+" KGS")
             thisSheet.cell(`C${currentRow}`).value(imprimacionObject[data.resina][1])
             thisSheet.cell(`D${currentRow}`).value(parseFloat(amount))
-            thisSheet.cell(`E${currentRow}`).value(parseFloat(price)*parseFloat(data.multiplicador))
+            thisSheet.cell(`E${currentRow}`).value(parseFloat(price))
             currentRow++
 
             thisSheet.cell(`B${currentRow}`).value(imprimacionObject[data.resina][2])
@@ -161,7 +161,7 @@ app.post('/createexcel', (req, res)=>{
             thisSheet.cell(`B${currentRow}`).value(1+" LTS")
             thisSheet.cell(`C${currentRow}`).value(disolventeObject[data.resina])
             thisSheet.cell(`D${currentRow}`).value(kitSize)
-            thisSheet.cell(`E${currentRow}`).value(parseFloat(price)*parseFloat(data.multiplicador))
+            thisSheet.cell(`E${currentRow}`).value(parseFloat(price))
             currentRow++
           }
         }
