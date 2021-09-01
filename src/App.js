@@ -108,10 +108,10 @@ function App() {
 
   useEffect(()=>{
     //console.log(parseFloat(finalPrices.imprimacion.reduce((acc,ele)=>(acc+ele))), parseFloat(finalPrices.capas.reduce((acc,ele)=>(acc+ele))) , parseFloat(finalPrices.disolvente) )
-    let badgeTotalPrice = (parseFloat(finalPrices.imprimacion.reduce((acc,ele)=>(acc+(ele ? ele : 0))))+parseFloat(finalPrices.capas.reduce((acc,ele)=>(acc+(ele ? ele : 0))))+parseFloat(finalPrices.disolvente ? finalPrices.disolvente : 0))/2
+    let badgeTotalPrice = (parseFloat(finalPrices.imprimacion.reduce((acc,ele, i)=>(acc+((ele ? ele : 0)*resultData.imprimacion.amountOfKits[i])),0))+parseFloat(finalPrices.capas.reduce((acc,ele, i)=>(acc+((ele ? ele : 0)*resultData.capas.amountOfKits[i])),0))+parseFloat((finalPrices.disolvente ? finalPrices.disolvente : 0)*resultData.disolvente))/2
     setTotalPrice(badgeTotalPrice)
     setTotalPricePerM2(badgeTotalPrice/mainData.m2)
-  },[finalPrices])
+  },[finalPrices,resultData])
 
   return (
     <React.StrictMode>

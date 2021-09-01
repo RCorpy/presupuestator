@@ -10,23 +10,24 @@ export default function Botonera({setKgsData, amount, thisPrice, setResultData ,
 
     useEffect(()=>{
         updateFinalPrices()
-    },[amount, thisPrice])
+    },[thisPrice])
 
     const updateFinalPrices = () => {
-        
+        console.log("updateFP")
         setFinalPrices((prev)=>{
             let newFinalPrices = {...prev}
             if(layer=="disolvente"){
-                newFinalPrices[layer] = thisPrice*amount*multiplicadorObject[mainData.resina]*2
+                newFinalPrices[layer] = thisPrice*multiplicadorObject[mainData.resina]*2
             }
             else{
-                newFinalPrices[layer][index] = thisPrice*amount*multiplicadorObject[mainData.resina]*2
+                newFinalPrices[layer][index] = thisPrice*multiplicadorObject[mainData.resina]*2
             }
             return newFinalPrices
         })
     }
 
     const handleFinalPrices = (e) =>{
+        console.log("handleFP")
         setFinalPrices((prev)=>{
             let newFinalPrices = {...prev}
             if(layer=="disolvente"){
@@ -41,6 +42,7 @@ export default function Botonera({setKgsData, amount, thisPrice, setResultData ,
     }
 
     const handleChange = (value)=>{
+        console.log("handleChange")
         setResultData((prev)=>{
             let toReturn = {...prev}
             if(layer=="disolvente"){
@@ -73,7 +75,7 @@ export default function Botonera({setKgsData, amount, thisPrice, setResultData ,
             }
             return toReturn
         })
-        updateFinalPrices()
+        //updateFinalPrices()
     }
 
     return (
