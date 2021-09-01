@@ -29,17 +29,18 @@ export const getResultData = (setResult, setKgsData, mainData, collapsableData, 
     //preparacion de datos y variables para el calculo
 
     const denominadorKgsResina = TAMAÑOS_DE_RESINA[mainData.resina]
+    let denominadorKgsResinaImprimacion = TAMAÑOS_DE_RESINA[mainData.resina]
 
     //parece que va bien pero un ojo no esta de mas xD
 
     const totalKgForKitsPorCapa = (layers, isImprimacion)=>{
             if(recalculateKgs){
-                return (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) % denominadorKgsResina > 1 ? 
-                (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) - (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) % denominadorKgsResina + denominadorKgsResina :
-                (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) - (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) % denominadorKgsResina
+                return (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) % (isImprimacion ? denominadorKgsResinaImprimacion > 1 : denominadorKgsResina > 1) ? 
+                (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) - (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) % (isImprimacion ? denominadorKgsResinaImprimacion : denominadorKgsResina) + (isImprimacion ? denominadorKgsResinaImprimacion: denominadorKgsResina) :
+                (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) - (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) % (isImprimacion ? denominadorKgsResinaImprimacion : denominadorKgsResina)
             }
             else{
-                console.log(kgsData[isImprimacion ? "kgsImprimacion" : "kgsCapas"])
+                //console.log(kgsData[isImprimacion ? "kgsImprimacion" : "kgsCapas"])
                 return kgsData[isImprimacion ? "kgsImprimacion" : "kgsCapas"]
             }
         }
@@ -49,6 +50,12 @@ export const getResultData = (setResult, setKgsData, mainData, collapsableData, 
     result.imprimacion.sizeOfKits = [denominadorKgsResina, denominadorKgsResina*2, denominadorKgsResina*3, denominadorKgsResina*4, denominadorKgsResina*5]
     result.capas.sizeOfKits = [denominadorKgsResina, denominadorKgsResina*2, denominadorKgsResina*3, denominadorKgsResina*4, denominadorKgsResina*5]
 
+    if(mainData.resina == "epoxy mate"){
+        denominadorKgsResinaImprimacion = TAMAÑOS_DE_RESINA["epoxy brillo"]
+        result.imprimacion.sizeOfKits = [denominadorKgsResinaImprimacion, denominadorKgsResinaImprimacion*2, denominadorKgsResinaImprimacion*3, denominadorKgsResinaImprimacion*4, denominadorKgsResinaImprimacion*5]
+
+    }
+
     // fin de preparacion
 
     //Calculo de los kits
@@ -57,31 +64,35 @@ export const getResultData = (setResult, setKgsData, mainData, collapsableData, 
 
     let totalKgs = 0
 
-    const calcularKits = (layers, isImprimacion) => {
+    const calcularKits = (layers, isImprimacion, thisDenominador) => {
 
-        totalKgs = totalKgForKitsPorCapa(layers, isImprimacion) - denominadorKgsResina*5*returnArray[4]
+        totalKgs = totalKgForKitsPorCapa(layers, isImprimacion) - thisDenominador*5*returnArray[4]
 
         if(totalKgs==0){
             return returnArray
         }
         if(result.capas.sizeOfKits[4] > totalKgs){
-            let positionInTheArray = totalKgs / denominadorKgsResina-1
+            let positionInTheArray = totalKgs / thisDenominador-1
             returnArray[positionInTheArray] = returnArray[positionInTheArray]+1
+            console.log("position", positionInTheArray, totalKgs, thisDenominador)
         }
         //probando aun (mejor mandar 2 o 3 kits de 18 o 24 que varios de 30 y alguno de 6)
 
         else if(returnArray[4]===0 &&
-            (totalKgs % (denominadorKgsResina*3)===0 || totalKgs % (denominadorKgsResina*4) ===0) &&
-            totalKgs % (denominadorKgsResina*5) !=0){
-                if(totalKgs % (denominadorKgsResina*4) ===0){return [0,0,0,totalKgs/(denominadorKgsResina*4),0]}
-                else{return [0,0,totalKgs/(denominadorKgsResina*3),0,0]}
+            (totalKgs % (thisDenominador*3)===0 || totalKgs % (thisDenominador*4) ===0) &&
+            totalKgs % (thisDenominador*5) !=0){
+                if(totalKgs % (thisDenominador*4) ===0){return [0,0,0,totalKgs/(thisDenominador*4),0]}
+                else{return [0,0,totalKgs/(thisDenominador*3),0,0]}
         }
         //fin de pruebas
         else{
             returnArray[4] = returnArray[4]+1
-            calcularKits(layers, isImprimacion)
+            calcularKits(layers, isImprimacion, thisDenominador)
         }
-
+        /*if(isImprimacion){
+            console.log(totalKgs, "function:", totalKgForKitsPorCapa(layers, isImprimacion), "denominador", thisDenominador)
+            console.warn(returnArray)
+        }*/
         return returnArray
     }
 
@@ -89,7 +100,7 @@ export const getResultData = (setResult, setKgsData, mainData, collapsableData, 
 
     if(imprimacion){
         returnArray = [0,0,0,0,0]
-        result.imprimacion.amountOfKits = calcularKits(imprimacion, true)
+        result.imprimacion.amountOfKits = calcularKits(imprimacion, true, denominadorKgsResinaImprimacion)
 
         imprimacionKgs = result.imprimacion.amountOfKits.reduce((acc, value, index)=>{
             return acc+(value*result.imprimacion.sizeOfKits[index])
@@ -99,7 +110,7 @@ export const getResultData = (setResult, setKgsData, mainData, collapsableData, 
 
     if(capas){
         returnArray = [0,0,0,0,0]
-        result.capas.amountOfKits = calcularKits(capas, false)
+        result.capas.amountOfKits = calcularKits(capas, false, denominadorKgsResina)
 
         capasKgs = result.capas.amountOfKits.reduce((acc, value, index)=>{
             return acc+(value*result.capas.sizeOfKits[index])
@@ -112,7 +123,8 @@ export const getResultData = (setResult, setKgsData, mainData, collapsableData, 
             setKgsData({
                 kgsImprimacion:imprimacionKgs,
                 kgsCapas: capasKgs,
-                minKitSize: denominadorKgsResina
+                minKitSizeCapas: denominadorKgsResina,
+                minKitSizeImprimacion: denominadorKgsResinaImprimacion
             })
         }
     }

@@ -41,7 +41,8 @@ function App() {
   const [kgsData, setKgsData] = useState({
     kgsImprimacion:6,
     kgsCapas: 6,
-    minKitSize: 6
+    minKitSizeImprimacion: 6,
+    minKitSizeCapas:6,
   })
 
   const [resultData, setResultData] = useState(importedResultData)
@@ -77,8 +78,8 @@ function App() {
     }
 
     for(let i=1; i<6 ; i++){
-      returnObject.imprimacion[i*kgsData.minKitSize] = myFinalPrices.imprimacion[i-1]
-      returnObject.capas[i*kgsData.minKitSize] = myFinalPrices.capas[i-1]
+      returnObject.imprimacion[i*kgsData.minKitSizeImprimacion] = myFinalPrices.imprimacion[i-1]
+      returnObject.capas[i*kgsData.minKitSizeCapas] = myFinalPrices.capas[i-1]
     }
 
     return returnObject

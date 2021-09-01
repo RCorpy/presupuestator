@@ -41,7 +41,7 @@ export default function Invoice({finalPrices, setFinalPrices, setTotalPrice, mai
 
     const getThisPrice = (layer, thisIndex)=>{
         if(layer!="disolvente"){
-            return priceObject[mainData.resina][layer=="capas" ? mainData.color : "Transparente"][resultData.capas.sizeOfKits[thisIndex]]
+            return priceObject[mainData.resina][layer=="capas" ? mainData.color : "Transparente"][resultData[layer].sizeOfKits[thisIndex]]
         }
         else{
             return priceObject[mainData.resina].disolvente

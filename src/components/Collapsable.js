@@ -40,7 +40,8 @@ export default function Main({getResultData, setResultData, resultData, mainData
                     getResultData(setResultData, setKgsData, mainData, collapsableData, {
                         kgsImprimacion: event.target.value,
                         kgsCapas: kgsData.kgsCapas,
-                        minKitSize: kgsData.minKitSize
+                        minKitSizeCapas: kgsData.minKitSizeCapas,
+                        minKitSizeImprimacion: kgsData.minKitSizeImprimacion
                       }, resultData, false)
                     }} value={kgsData.kgsImprimacion} step={kgsData.minKitSize}/>
                 <label className="inputlabel" htmlFor="kgsImprimacion"> kgsImprimacion </label>
@@ -52,7 +53,8 @@ export default function Main({getResultData, setResultData, resultData, mainData
                     getResultData(setResultData, setKgsData, mainData, collapsableData, {
                         kgsImprimacion: kgsData.kgsImprimacion,
                         kgsCapas: event.target.value,
-                        minKitSize: kgsData.minKitSize
+                        minKitSizeCapas: kgsData.minKitSizeCapas,
+                        minKitSizeImprimacion: kgsData.minKitSizeImprimacion
                       }, resultData, false)
                     }} value={kgsData.kgsCapas} step={kgsData.minKitSize}/>
                 <label className="inputlabel" htmlFor="kgsCapas"> kgsCapas </label>

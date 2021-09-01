@@ -872,11 +872,11 @@ const makePriceObject = (responseObject)=>{
             27.5: 0
         },
         Transparente:{
-            5.5: 0,
-            11: 0,
-            16.5: 0,
-            22: 0,
-            27.5: 0
+            6: (responseObject[126 -5] && responseObject[126-5][10].dato.toFixed(2)) || 0,
+            12: (responseObject[127 -5] && responseObject[127-5][10].dato.toFixed(2)) || 0,
+            18: (responseObject[128 -5] && responseObject[128-5][10].dato.toFixed(2)) || 0,
+            24: (responseObject[129 -5] && responseObject[129-5][10].dato.toFixed(2)) || 0,
+            30: (responseObject[130 -5] && responseObject[130-5][10].dato.toFixed(2)) || 0
         },
         'Gris medio':{
             5.5: (responseObject[395 -5] && responseObject[395-5][10].dato.toFixed(2)) || 0,
