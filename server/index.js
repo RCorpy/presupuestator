@@ -38,7 +38,7 @@ app.use(express. json())
 app.post('/createexcel', (req, res)=>{
 
   const data = {...req.body.token}
-  let thisFileName = ""
+  const thisFileName = data.thisFileName
 
   console.log("hi Rigga", data)
 
@@ -47,7 +47,7 @@ app.post('/createexcel', (req, res)=>{
     .then(workbook => {
         // Modify the workbook.
         let today = new Date()
-        thisFileName = Date.now().toString().substring(2).slice(0,-3) + ` ${data.m2}m²`
+        
         let thisSheet = workbook.sheet("proforma")
 
         let totalKgs = parseFloat(data.kgsImprimacion)+parseFloat(data.kgsCapas)+parseInt(data.resultData.disolvente)

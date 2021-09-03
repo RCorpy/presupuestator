@@ -16,7 +16,7 @@ import importedIdentifyerData from "./formats/importedIdentifyersData"
 import importedResultData from "./formats/importedResultData"
 import multiplicadorObject from "./multiplicador"
 
-import {getArticulosTable, getAuth, pruebaPresupuesto} from './formats/apiRequests'
+import {getArticulosTable, getAuth} from './formats/apiRequests'
 
 import {getResultData} from './formats/getResultData'
 
@@ -50,7 +50,7 @@ function App() {
   const [totalPrice, setTotalPrice] = useState(0)
   const [totalPricePerM2, setTotalPricePerM2] = useState(0)
 
-  const gatherUsefulData = ()=>{
+  const gatherUsefulData = (thisFileRef)=>{
 
     return {
       resina: mainData.resina,
@@ -66,7 +66,9 @@ function App() {
       descuento: collapsableData.descuento,
       herramientas: collapsableData.herramientas,
       priceObject: makeFinalPriceObject(finalPrices),
-      resultData: resultData
+      resultData: resultData,
+      thisFileName: thisFileRef + ` ${mainData.m2}m²`,
+      totalPrice: totalPrice
     }
   }
 
@@ -130,7 +132,7 @@ function App() {
             <Invoice finalPrices={finalPrices} setFinalPrices={setFinalPrices} setKgsData={setKgsData} setTotalPrice={setTotalPrice} mainData={mainData}  resultData={resultData} setResultData={setResultData} priceObject={priceObject}/>
           </div>
         </div>
-        <CreatePanel pruebaPresupuesto={()=>pruebaPresupuesto(auth)} gatherUsefulData={gatherUsefulData} mainData={mainData} identifyersData={identifyersData} resultData={resultData} totalPrice={totalPrice} totalPricePerM2={totalPricePerM2} gm2Imprimacion={resultData.gPerM2.imprimacion} gm2Capas={resultData.gPerM2.capas}/>
+        <CreatePanel auth={auth} gatherUsefulData={gatherUsefulData} mainData={mainData} identifyersData={identifyersData} resultData={resultData} totalPrice={totalPrice} totalPricePerM2={totalPricePerM2} gm2Imprimacion={resultData.gPerM2.imprimacion} gm2Capas={resultData.gPerM2.capas}/>
       </div>
     </React.StrictMode>
   );
