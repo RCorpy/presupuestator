@@ -38,7 +38,7 @@ export const getArticulosTable = (auth, setArticulosTable) =>{
 })
 }
 
-export const crearPresupuesto = async (auth, codigo, fileRef, totalPrice, totalPeso) =>{
+export const crearPresupuesto = async (auth, codigo, fileRef, totalPrice, totalPeso, telefono) =>{
 
   let today = new Date();
   let dd = today.getDate();
@@ -81,11 +81,15 @@ export const crearPresupuesto = async (auth, codigo, fileRef, totalPrice, totalP
       },
         {//portes
           "columna": "IPOR1PRE",
-          "dato": 20
+          "dato": totalPeso*PRECIO_PORTES_POR_KG<17 ? 17 : totalPeso*PRECIO_PORTES_POR_KG 
       },
         {//total
           "columna": "TOTPRE",
           "dato": ((totalPrice+(totalPeso*PRECIO_PORTES_POR_KG<17 ? 17 : totalPeso*PRECIO_PORTES_POR_KG ))*1.21).toFixed(2)
+      },
+        {//comentario-telefono
+          "columna": "COMPRE",
+          "dato": telefono
       },
 
 

@@ -1,6 +1,7 @@
 const identifyersData = {
     concepto: "",
-    nombre:""
+    nombre:"",
+    telefono: ""
 }
 
 export default identifyersData

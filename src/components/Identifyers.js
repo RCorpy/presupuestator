@@ -21,6 +21,11 @@ export default function Main({setIdentifyersData, identifyersData}) {
                 <input type="text" id="nombre" name="nombre" className="inputbody" placeholder="nombre" onChange={(event)=>{handleSetIdentifyerData("nombre", event.target.value)}}></input>
                 <label className="inputlabel" htmlFor="nombre"> Nombre </label>
             </div>
+
+            <div className="inputgroup">
+                <input type="text" id="telefono" name="telefono" className="inputbody" placeholder="telefono" onChange={(event)=>{handleSetIdentifyerData("telefono", event.target.value)}}></input>
+                <label className="inputlabel" htmlFor="telefono"> Telefono </label>
+            </div>
         </div>
     )
 }

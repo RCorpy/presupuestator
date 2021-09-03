@@ -53,6 +53,7 @@ function App() {
   const gatherUsefulData = (thisFileRef)=>{
 
     return {
+      telefono: identifyersData.telefono,
       resina: mainData.resina,
       m2:mainData.m2,
       imprimacion: parseInt(mainData.capas.split("")[0]),

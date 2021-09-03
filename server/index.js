@@ -6,6 +6,7 @@ const openMyFile = require('open');
 
 const userName = require("./usuario").modules.userName
 const customPath = require("./usuario").modules.customPath
+const listadoPath = require("./usuario").modules.listadoPath
 
 const PRECIO_PORTES_POR_KG = 0.33
 
@@ -62,6 +63,8 @@ app.post('/createexcel', (req, res)=>{
         thisSheet.cell("C47").value(`Portes ${totalKgs} kgs brutos`)
         thisSheet.cell("D47").value(totalKgs)
         thisSheet.cell("E47").value(PRECIO_PORTES_POR_KG)
+        thisSheet.cell("E11").value(data.telefono)
+
         
         //Empezar a escribir conceptos
 
@@ -227,10 +230,76 @@ app.post('/createexcel', (req, res)=>{
   res.send("it might just work")
 })
 
+
+
+
+
+app.post('/listadotelefonos', (req, res)=>{
+
+  const auth = req.body.token.auth
+  const presupuestos = req.body.presupuestos
+  const pedidos = req.body.pedidos
+  const clientes = req.body.clientes
+
+  let today = new Date()
+  let dd = today.getDate();
+  let mm = today.getMonth()+1; 
+  let yyyy = today.getFullYear();
+  if(dd<10) {
+      dd='0'+dd;
+  } 
+  if(mm<10) {
+      mm='0'+mm;
+  } 
+  today = yyyy+'-'+mm+'-'+dd;
+
+
+let telefonosQueHanComprado = []
+for(let j=0; j<pedidos.length; j++){
+  if(pedidos[j][6].dato){
+    telefonosQueHanComprado.push(clientes[pedidos[j][6].dato])
+  }
+}
+  
+  XlsxPopulate.fromFileAsync("./baselistado.xlsx")
+  .then(workbook => {
+      // Modify the workbook.      
+      let thisSheet = workbook.sheet("Hoja1")
+      let currentRow = 4
+      let telefonosQueNoHanComprado = []
+
+      for(let i=0; i<presupuestos.length;i++){
+        if(presupuestos[i][79].dato){
+          if(!telefonosQueHanComprado.includes(presupuestos[i][79].dato) && !telefonosQueNoHanComprado.includes(presupuestos[i][79].dato)){
+            telefonosQueNoHanComprado.push(presupuestos[i][79].dato)
+
+            //escribir en excel
+            thisSheet.cell(`B${currentRow}`).value(presupuestos[i][2].dato)
+            thisSheet.cell(`C${currentRow}`).value(presupuestos[i][79].dato)
+            thisSheet.cell(`D${currentRow}`).value(presupuestos[i][61].dato)
+            thisSheet.cell(`E${currentRow}`).value(presupuestos[i][3].dato.split("T")[0])
+            currentRow++
+          }
+        }
+      }
+
+      console.warn(telefonosQueNoHanComprado)
+      return workbook.toFileAsync(listadoPath ? listadoPath + `${userName} ${today}.xlsx` : `listados/${userName} ${today}.xlsx`)
+  })    
+  .then(()=>{
+    openMyFile( listadoPath ? listadoPath+ `${userName} ${today}.xlsx` : path.join(__dirname,`/listados/${userName} ${today}.xlsx`), {wait:true})
+  })
+
+  
+})
+
+
+
+
+
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
-
 
 
 // start express server on port 5000

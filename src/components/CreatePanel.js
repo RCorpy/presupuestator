@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
-import {expressFunc} from '../formats/expressRequests'
+import {expressFuncCreate, expressFuncListado} from '../formats/expressRequests'
 import { crearPresupuesto, getNuevoCodigo, crearArticulo, buscarArticuloConCodigo } from '../formats/apiRequests';
 import { CODES } from '../formats/delsolCodes'
 
@@ -14,13 +14,18 @@ const resinasDictionary = {
 
 export default function CreatePanel({auth, gatherUsefulData, totalPricePerM2, totalPrice, gm2Imprimacion, gm2Capas}) {
 
+    const handleListado = async () =>{
+        expressFuncListado(auth)
+    }
+
+
     const handleCreate = async () =>{
         const thisFileRef = Date.now().toString().substring(2).slice(0,-3)
         const usefulData = gatherUsefulData(thisFileRef)
-        expressFunc(usefulData)
+        expressFuncCreate(usefulData)
 
         const codigoPresupuesto = await getNuevoCodigo(auth)
-        const presupuesto = await crearPresupuesto(auth, codigoPresupuesto, thisFileRef, usefulData.totalPrice, (usefulData.kgsCapas+usefulData.kgsImprimacion+usefulData.resultData.disolvente))
+        const presupuesto = await crearPresupuesto(auth, codigoPresupuesto, thisFileRef, usefulData.totalPrice, (usefulData.kgsCapas+usefulData.kgsImprimacion+usefulData.resultData.disolvente), usefulData.telefono)
         
         const codesImprimacion = CODES[resinasDictionary[usefulData.resina]]["Transparente"]
 
@@ -84,7 +89,7 @@ export default function CreatePanel({auth, gatherUsefulData, totalPricePerM2, to
 
     return (
         <div className="inputrow">
-            <Badge pill bg="primary" className="pillBadge" >{totalPricePerM2.toFixed(2)} €/m²</Badge>
+            <Badge pill bg="primary" className="pillBadge" onClick={()=>handleListado()}>{totalPricePerM2.toFixed(2)} €/m²</Badge>
             
             <Badge pill bg="dark" className="pillBadge" >{totalPrice.toFixed(2)} €</Badge>
 
