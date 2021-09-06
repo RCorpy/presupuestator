@@ -35,9 +35,16 @@ export const getResultData = (setResult, setKgsData, mainData, collapsableData, 
 
     const totalKgForKitsPorCapa = (layers, isImprimacion)=>{
             if(recalculateKgs){
-                return (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) % (isImprimacion ? denominadorKgsResinaImprimacion > 1 : denominadorKgsResina > 1) ? 
-                (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) - (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) % (isImprimacion ? denominadorKgsResinaImprimacion : denominadorKgsResina) + (isImprimacion ? denominadorKgsResinaImprimacion: denominadorKgsResina) :
-                (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) - (mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG) % (isImprimacion ? denominadorKgsResinaImprimacion : denominadorKgsResina)
+                let kgsEntreTodasLasCapas = Math.ceil(mainData.m2*layers * GRAMOS_POR_CAPA / GRAMOS_EN_UN_KG)
+                let thisLocalDenominador = isImprimacion ? denominadorKgsResinaImprimacion : denominadorKgsResina
+
+                let gIfCeil = (kgsEntreTodasLasCapas + thisLocalDenominador - (kgsEntreTodasLasCapas % thisLocalDenominador)).toFixed(1)
+                console.log("gIfCeil", gIfCeil, kgsEntreTodasLasCapas)
+                
+                //if(isImprimacion){console.log("kgsEntreTodasLasCapas",kgsEntreTodasLasCapas, thisLocalDenominador)}
+
+                return gIfCeil
+                
             }
             else{
                 //console.log(kgsData[isImprimacion ? "kgsImprimacion" : "kgsCapas"])
@@ -65,22 +72,23 @@ export const getResultData = (setResult, setKgsData, mainData, collapsableData, 
     let totalKgs = 0
 
     const calcularKits = (layers, isImprimacion, thisDenominador) => {
-
+        
         totalKgs = totalKgForKitsPorCapa(layers, isImprimacion) - thisDenominador*5*returnArray[4]
-
+        if(!returnArray[4]&& isImprimacion){console.log("totalKgs: ", totalKgs)}
         if(totalKgs==0){
             return returnArray
         }
         if(result.capas.sizeOfKits[4] > totalKgs){
-            let positionInTheArray = totalKgs / thisDenominador-1
+            //if(isImprimacion)console.warn("position", totalKgs/thisDenominador, totalKgs, thisDenominador)
+            let positionInTheArray = (totalKgs / thisDenominador) - 1
             returnArray[positionInTheArray] = returnArray[positionInTheArray]+1
-            console.log("position", positionInTheArray, totalKgs, thisDenominador)
+            //console.log("position", positionInTheArray, totalKgs, thisDenominador)
         }
         //probando aun (mejor mandar 2 o 3 kits de 18 o 24 que varios de 30 y alguno de 6)
 
         else if(returnArray[4]===0 &&
             (totalKgs % (thisDenominador*3)===0 || totalKgs % (thisDenominador*4) ===0) &&
-            totalKgs % (thisDenominador*5) !=0){
+            totalKgs % (thisDenominador*5) !==0){
                 if(totalKgs % (thisDenominador*4) ===0){return [0,0,0,totalKgs/(thisDenominador*4),0]}
                 else{return [0,0,totalKgs/(thisDenominador*3),0,0]}
         }
@@ -104,7 +112,7 @@ export const getResultData = (setResult, setKgsData, mainData, collapsableData, 
 
         imprimacionKgs = result.imprimacion.amountOfKits.reduce((acc, value, index)=>{
             return acc+(value*result.imprimacion.sizeOfKits[index])
-        })
+        },0)
         result.gPerM2.imprimacion = imprimacionKgs/mainData.m2 * GRAMOS_EN_UN_KG 
     }
 
@@ -114,14 +122,14 @@ export const getResultData = (setResult, setKgsData, mainData, collapsableData, 
 
         capasKgs = result.capas.amountOfKits.reduce((acc, value, index)=>{
             return acc+(value*result.capas.sizeOfKits[index])
-        })
+        },0)
 
         result.gPerM2.capas = capasKgs/mainData.m2 * GRAMOS_EN_UN_KG * (capas ? 1/capas : 1)
     }
     if(recalculateKgs){
         if( kgsData.kgsImprimacion !== imprimacionKgs || kgsData.kgsCapas !== capasKgs){
             setKgsData({
-                kgsImprimacion:imprimacionKgs,
+                kgsImprimacion: imprimacionKgs,
                 kgsCapas: capasKgs,
                 minKitSizeCapas: denominadorKgsResina,
                 minKitSizeImprimacion: denominadorKgsResinaImprimacion
@@ -140,7 +148,7 @@ export const getResultData = (setResult, setKgsData, mainData, collapsableData, 
 
     //fin de calculo de kits
     //console.log("gotten result: ", result)
-    
+
     //if(result.gPerM2.imprimacion !== resultData.gPerM2.imprimacion || result.gPerM2.capas !== resultData.gPerM2.capas)
         setResult(result)
 

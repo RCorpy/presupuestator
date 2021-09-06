@@ -102,8 +102,7 @@ function App() {
 
 
   useEffect(()=>{
-    console.log("mainData:", mainData)
-    console.warn("resultData:", resultData)
+
     getResultData(setResultData, setKgsData, mainData, collapsableData, kgsData, resultData, true)
   }, [priceObject, mainData])
 
