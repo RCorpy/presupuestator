@@ -140,9 +140,10 @@ export const getResultData = (setResult, setKgsData, mainData, collapsableData, 
 
     //fin de calculo de kits
     //console.log("gotten result: ", result)
-    if(result.gPerM2.imprimacion !== resultData.gPerM2.imprimacion || result.gPerM2.capas !== resultData.gPerM2.capas){
+    
+    //if(result.gPerM2.imprimacion !== resultData.gPerM2.imprimacion || result.gPerM2.capas !== resultData.gPerM2.capas)
         setResult(result)
-        }
+
 
 
 }
