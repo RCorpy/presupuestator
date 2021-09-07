@@ -7,6 +7,7 @@ import Collapsable from "./components/Collapsable"
 import CreatePanel from "./components/CreatePanel"
 import Identifyers from "./components/Identifyers"
 import Invoice from "./components/Invoice"
+import Extras from "./components/Extras"
 import "./styles.css";
 
 import importedPriceObject from "./formats/priceObject"
@@ -50,6 +51,8 @@ function App() {
   const [totalPrice, setTotalPrice] = useState(0)
   const [totalPricePerM2, setTotalPricePerM2] = useState(0)
 
+  const [extras, setExtras] = useState([])
+
   const gatherUsefulData = (thisFileRef)=>{
 
     return {
@@ -69,7 +72,8 @@ function App() {
       priceObject: makeFinalPriceObject(finalPrices),
       resultData: resultData,
       thisFileName: thisFileRef + ` ${mainData.m2}m²`,
-      totalPrice: totalPrice
+      totalPrice: totalPrice,
+      extras: extras
     }
   }
 
@@ -114,9 +118,13 @@ function App() {
   useEffect(()=>{
     //console.log(parseFloat(finalPrices.imprimacion.reduce((acc,ele)=>(acc+ele))), parseFloat(finalPrices.capas.reduce((acc,ele)=>(acc+ele))) , parseFloat(finalPrices.disolvente) )
     let badgeTotalPrice = (parseFloat(finalPrices.imprimacion.reduce((acc,ele, i)=>(acc+((ele ? ele : 0)*resultData.imprimacion.amountOfKits[i])),0))+parseFloat(finalPrices.capas.reduce((acc,ele, i)=>(acc+((ele ? ele : 0)*resultData.capas.amountOfKits[i])),0))+parseFloat((finalPrices.disolvente ? finalPrices.disolvente : 0)*resultData.disolvente))/2
+    let extraPrices = extras.reduce((acc, element)=>(acc+(parseFloat(element.value) * parseFloat(element.amount))),0) 
+
+    badgeTotalPrice = badgeTotalPrice + extraPrices
+
     setTotalPrice(badgeTotalPrice)
     setTotalPricePerM2(badgeTotalPrice/mainData.m2)
-  },[finalPrices,resultData])
+  },[finalPrices,resultData, extras])
 
   return (
     <React.StrictMode>
@@ -129,6 +137,8 @@ function App() {
             <MainData setMainData={setMainData} mainData={mainData}/>
             <Collapsable setResultData={setResultData} resultData={resultData} mainData={mainData} getResultData={getResultData} setCollapsableData={setCollapsableData} collapsableData={collapsableData} kgsData={kgsData} setKgsData={setKgsData}/>
             <Identifyers setIdentifyersData={setIdentifyersData} identifyersData={identifyersData}/>
+            <Extras setExtras={setExtras}/>
+
           </div>
           <div className="rightside">
             <Invoice finalPrices={finalPrices} setFinalPrices={setFinalPrices} setKgsData={setKgsData} setTotalPrice={setTotalPrice} mainData={mainData}  resultData={resultData} setResultData={setResultData} priceObject={priceObject}/>
