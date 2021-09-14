@@ -32,6 +32,7 @@ export const getArticulosTable = (auth, setArticulosTable) =>{
     ejercicio: "2021",
     consulta: "SELECT * FROM F_ART"
   },authHeader(auth)).then((response) => {
+    //console.log("response", response.data)
     setArticulosTable(makePriceObject(response.data.resultado))
 }, (error) => {
   console.log(error);

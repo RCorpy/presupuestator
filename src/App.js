@@ -118,7 +118,7 @@ function App() {
   useEffect(()=>{
     //console.log(parseFloat(finalPrices.imprimacion.reduce((acc,ele)=>(acc+ele))), parseFloat(finalPrices.capas.reduce((acc,ele)=>(acc+ele))) , parseFloat(finalPrices.disolvente) )
     let badgeTotalPrice = (parseFloat(finalPrices.imprimacion.reduce((acc,ele, i)=>(acc+((ele ? ele : 0)*resultData.imprimacion.amountOfKits[i])),0))+parseFloat(finalPrices.capas.reduce((acc,ele, i)=>(acc+((ele ? ele : 0)*resultData.capas.amountOfKits[i])),0))+parseFloat((finalPrices.disolvente ? finalPrices.disolvente : 0)*resultData.disolvente))/2
-    let extraPrices = extras.reduce((acc, element)=>(acc+(parseFloat(element.value) * parseFloat(element.amount))),0) 
+    let extraPrices = extras.reduce((acc, element)=>(acc+(parseFloat(element.value) * parseFloat(element.amount))),0) * collapsableData.descuento
 
     badgeTotalPrice = badgeTotalPrice + extraPrices
 
@@ -141,7 +141,7 @@ function App() {
 
           </div>
           <div className="rightside">
-            <Invoice finalPrices={finalPrices} setFinalPrices={setFinalPrices} setKgsData={setKgsData} setTotalPrice={setTotalPrice} mainData={mainData}  resultData={resultData} setResultData={setResultData} priceObject={priceObject}/>
+            <Invoice extras={extras} finalPrices={finalPrices} setFinalPrices={setFinalPrices} setKgsData={setKgsData} setTotalPrice={setTotalPrice} mainData={mainData}  resultData={resultData} setResultData={setResultData} priceObject={priceObject}/>
           </div>
         </div>
         <CreatePanel auth={auth} gatherUsefulData={gatherUsefulData} mainData={mainData} identifyersData={identifyersData} resultData={resultData} totalPrice={totalPrice} totalPricePerM2={totalPricePerM2} gm2Imprimacion={resultData.gPerM2.imprimacion} gm2Capas={resultData.gPerM2.capas}/>

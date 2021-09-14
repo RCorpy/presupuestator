@@ -3,7 +3,7 @@ import "../formats/invoiceStyles.css"
 import Botonera from './Botonera'
 
 
-export default function Invoice({finalPrices, setFinalPrices, setTotalPrice, mainData, resultData, setResultData, priceObject, setKgsData}) {
+export default function Invoice({extras, finalPrices, setFinalPrices, setTotalPrice, mainData, resultData, setResultData, priceObject, setKgsData}) {
 
     const [imprimacionPrice, setImprimacionPrice] = useState(0)
     const [capasPrice, setCapasPrice] = useState(0)
@@ -85,11 +85,7 @@ export default function Invoice({finalPrices, setFinalPrices, setTotalPrice, mai
                 <div style={{marginRight: "2vh"}}>Disolvente: {resultData.disolvente} </div>
                 <Botonera index={0} finalPrices={finalPrices} setFinalPrices={setFinalPrices} setResultData={setResultData} layer={"disolvente"} mainData={mainData} thisPrice={getThisPrice("disolvente", 0)} amount={resultData.disolvente}/>
             </div>
-            {
-            /*<div>{imprimacionPrice.toFixed(2)} </div>
-            <div>{capasPrice.toFixed(2)} </div>
-            <div>{disolventePrice.toFixed(2)}</div>*/
-            }
+            {extras.map((element)=>(<div>{element.name} -> {element.amount}uds x {element.value}€ : {element.amount*element.value}</div>))}
         </div>
         
     )

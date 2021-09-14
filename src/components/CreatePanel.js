@@ -77,6 +77,14 @@ export default function CreatePanel({auth, gatherUsefulData, totalPricePerM2, to
             const articuloCreado = await crearArticulo(auth, codigoPresupuesto, orderArticulos, 10047, usefulData.herramientas.rodillos, 0, "RODILLOS 220mm")
             orderArticulos++
         }
+        //extras
+        if(usefulData.extras[0]){
+            for(let i=0; i<usefulData.extras.length ; i++){
+                const articuloCreado = await crearArticulo(auth, codigoPresupuesto, orderArticulos, 10476, usefulData.extras[i].amount, usefulData.extras[i].value, usefulData.extras[i].name)
+                orderArticulos++
+            }
+        }
+
 ///////////////
 
 

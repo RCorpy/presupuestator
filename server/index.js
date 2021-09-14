@@ -41,7 +41,18 @@ app.post('/createexcel', (req, res)=>{
   const data = {...req.body.token}
   const thisFileName = data.thisFileName
 
+  let hasHarina = false
+  let subExtras = data.extras.map((element)=>{
+    if(element.name.includes("harina")){
+      hasHarina = element
+    }
+    else{
+      return element
+    }
+  }).filter((ele)=>(ele))
+
   console.log("hi Rigga", data)
+  console.log("extras", subExtras, hasHarina)
 
   // Load an existing workbook
   XlsxPopulate.fromFileAsync("./basePresupuestosExcel.xlsx")
@@ -179,6 +190,13 @@ app.post('/createexcel', (req, res)=>{
           }
         }
 
+        const makeExtrasConceptRow = (name, amount, price) => {
+          thisSheet.cell(`B${currentRow}`).value("UNIDADES")
+          thisSheet.cell(`C${currentRow}`).value(name)
+          thisSheet.cell(`D${currentRow}`).value(parseFloat(amount))
+          thisSheet.cell(`E${currentRow}`).value(parseFloat(price))
+          currentRow++
+        }
         if(data.imprimacion){
           //titulo
             makeTitle("IMPRIMACIÓN")
@@ -188,7 +206,14 @@ app.post('/createexcel', (req, res)=>{
           }
 
           //hueco de harina de carzo
-          currentRow++
+          if(hasHarina){
+            thisSheet.cell(`B${currentRow}`).value("KGS 25")
+            thisSheet.cell(`C${currentRow}`).value("HARINA DE CUARZO")
+            thisSheet.cell(`D${currentRow}`).value(parseFloat(hasHarina.amount))
+            thisSheet.cell(`E${currentRow}`).value(parseFloat(hasHarina.value))
+            currentRow++
+          }
+          
         }
         if(data.capas){
           //titulo
@@ -217,7 +242,12 @@ app.post('/createexcel', (req, res)=>{
             makeHerramientasConceptRow("RODILLOS", data.herramientas.rodillos)
           }
         }
-
+          //extras
+        if(subExtras[0]){
+          for(let i=0; i<subExtras.length; i++){
+            makeExtrasConceptRow(subExtras[i].name, subExtras[i].amount, subExtras[i].value)
+          }
+        }
 
         return workbook.toFileAsync(customPath ? customPath + `${userName} ${thisFileName}.xlsx` : `presupuestos/${userName} ${thisFileName}.xlsx`)
     })
