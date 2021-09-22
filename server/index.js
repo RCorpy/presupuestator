@@ -244,6 +244,7 @@ app.post('/createexcel', (req, res)=>{
         }
           //extras
         if(subExtras[0]){
+          makeTitle("EXTRAS")
           for(let i=0; i<subExtras.length; i++){
             makeExtrasConceptRow(subExtras[i].name, subExtras[i].amount, subExtras[i].value)
           }
@@ -322,9 +323,6 @@ for(let j=0; j<pedidos.length; j++){
 
   
 })
-
-
-
 
 
 app.use((req, res, next) => {
