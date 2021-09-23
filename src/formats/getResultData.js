@@ -6,7 +6,8 @@ export const TAMAÑOS_DE_RESINA = {
     "epoxy brillo": 6,
     "epoxy mate":5.5,
     "acrilica": 5,
-    "politop": 5
+    "politop": 5,
+    "epoxy am": 6
 }
 
 

@@ -31,6 +31,7 @@ export default function Main({setMainData, mainData}) {
                     <Dropdown.Item onClick={()=>{handleSetMainData("resina", "epoxy mate")}}>Epoxy mate</Dropdown.Item>
                     <Dropdown.Item onClick={()=>{handleSetMainData("resina", "acrilica")}}>acrilica</Dropdown.Item>
                     <Dropdown.Item onClick={()=>{handleSetMainData("resina", "politop")}}>politop</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>{handleSetMainData("resina", "epoxy am")}}>Epoxy AM</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
             <div className="inputgroup">

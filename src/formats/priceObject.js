@@ -374,6 +374,9 @@ const priceObject = {
           25: 102
       },
     },
+    "epoxy am":{
+
+    }
 };
 
 export default priceObject 

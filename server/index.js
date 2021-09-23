@@ -27,6 +27,9 @@ const texteator = {
   },
   "politop":{
     name: "POLITOP"
+  },
+  "epoxy am":{
+    name: "EPOXY AM"
   }
 }
 
@@ -108,6 +111,11 @@ app.post('/createexcel', (req, res)=>{
               1:"POLITOP",
               2:"",
               3:"COLOR (MANOS)"
+            },
+            'epoxy am':{
+              1:"EPOXY AM",
+              2:"Catalizador 5 a 1",
+              3:"COLOR (MANOS)"
             }
           }
           if(amount){
@@ -146,8 +154,13 @@ app.post('/createexcel', (req, res)=>{
               1:"ERROR",
               2:"ERROR",
               3:"ERROR"
-            }
+            },
+            'epoxy am':{
+              1:"ENEPOXI AM PRIMER",
+              2:"Catalizador 5 a 1",
+              3:""
           }
+        }
           if(amount){
             
             thisSheet.cell(`B${currentRow}`).value((data.resina == "epoxy brillo" || data.resina =="epoxy mate" ? "KIT ": "")+kitSize+" KGS")

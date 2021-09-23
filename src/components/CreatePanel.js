@@ -9,7 +9,8 @@ const resinasDictionary = {
     "epoxy brillo": "epoxiBrillo",
     "epoxi mate": "epoxiMate",
     "acrilica": "acrilica",
-    "politop": "politop"
+    "politop": "politop",
+    "epoxy am": "epoxyAM"
 }
 
 export default function CreatePanel({auth, gatherUsefulData, totalPricePerM2, totalPrice, gm2Imprimacion, gm2Capas}) {
@@ -22,6 +23,7 @@ export default function CreatePanel({auth, gatherUsefulData, totalPricePerM2, to
     const handleCreate = async () =>{
         const thisFileRef = Date.now().toString().substring(2).slice(0,-3)
         const usefulData = gatherUsefulData(thisFileRef)
+        console.log("usefulData", usefulData)
         expressFuncCreate(usefulData)
 
         const codigoPresupuesto = await getNuevoCodigo(auth)
