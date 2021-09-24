@@ -757,8 +757,102 @@ const makePriceObject = (responseObject)=>{
                 25: 0
             },
           },
+          "epoxy am":{
+            Ocre:{
+                6: 0,
+                12: 0,
+                18: 0,
+                24: 0,
+                30: 0
+            },
+            Crema:{
+                6: (responseObject[515 -5] && responseObject[515-5][10].dato.toFixed(2)) || 0,
+                12: (responseObject[516 -5] && responseObject[516-5][10].dato.toFixed(2)) || 0,
+                18: (responseObject[517 -5] && responseObject[517-5][10].dato.toFixed(2)) || 0,
+                24: (responseObject[518 -5] && responseObject[518-5][10].dato.toFixed(2)) || 0,
+                30: (responseObject[519 -5] && responseObject[519-5][10].dato.toFixed(2)) || 0
+            },
+            Transparente:{
+                6: (responseObject[490 -5] && responseObject[490-5][10].dato.toFixed(2)) || 0,
+                12: (responseObject[491 -5] && responseObject[491-5][10].dato.toFixed(2)) || 0,
+                18: (responseObject[492 -5] && responseObject[492-5][10].dato.toFixed(2)) || 0,
+                24: (responseObject[493 -5] && responseObject[493-5][10].dato.toFixed(2)) || 0,
+                30: (responseObject[494 -5] && responseObject[494-5][10].dato.toFixed(2)) || 0
+            },
+            'Gris claro':{
+                6: (responseObject[495 -5] && responseObject[495-5][10].dato.toFixed(2)) || 0,
+                12: (responseObject[496 -5] && responseObject[496-5][10].dato.toFixed(2)) || 0,
+                18: (responseObject[497 -5] && responseObject[497-5][10].dato.toFixed(2)) || 0,
+                24: (responseObject[498 -5] && responseObject[498-5][10].dato.toFixed(2)) || 0,
+                30: (responseObject[499 -5] && responseObject[499-5][10].dato.toFixed(2)) || 0
+            },
+            "Gris medio":{
+                6: (responseObject[500 -5] && responseObject[500-5][10].dato.toFixed(2)) || 0,
+                12: (responseObject[501 -5] && responseObject[501-5][10].dato.toFixed(2)) || 0,
+                18: (responseObject[502 -5] && responseObject[502-5][10].dato.toFixed(2)) || 0,
+                24: (responseObject[503 -5] && responseObject[503-5][10].dato.toFixed(2)) || 0,
+                30: (responseObject[504 -5] && responseObject[504-5][10].dato.toFixed(2)) || 0
+            },
+            'Gris oscuro':{
+                6: (responseObject[505 -5] && responseObject[505-5][10].dato.toFixed(2)) || 0,
+                12: (responseObject[506 -5] && responseObject[506-5][10].dato.toFixed(2)) || 0,
+                18: (responseObject[507 -5] && responseObject[507-5][10].dato.toFixed(2)) || 0,
+                24: (responseObject[508 -5] && responseObject[508-5][10].dato.toFixed(2)) || 0,
+                30: (responseObject[509 -5] && responseObject[509-5][10].dato.toFixed(2)) || 0
+            },
+            Antracita:{
+                6: (responseObject[510 -5] && responseObject[510-5][10].dato.toFixed(2)) || 0,
+                12: (responseObject[511 -5] && responseObject[511-5][10].dato.toFixed(2)) || 0,
+                18: (responseObject[512 -5] && responseObject[512-5][10].dato.toFixed(2)) || 0,
+                24: (responseObject[513 -5] && responseObject[513-5][10].dato.toFixed(2)) || 0,
+                30: (responseObject[514 -5] && responseObject[514-5][10].dato.toFixed(2)) || 0
+            },
+            Blanco:{
+                6: (responseObject[520 -5] && responseObject[520-5][10].dato.toFixed(2)) || 0,
+                12: (responseObject[521 -5] && responseObject[521-5][10].dato.toFixed(2)) || 0,
+                18: (responseObject[522 -5] && responseObject[522-5][10].dato.toFixed(2)) || 0,
+                24: (responseObject[523 -5] && responseObject[523-5][10].dato.toFixed(2)) || 0,
+                30: (responseObject[524 -5] && responseObject[524-5][10].dato.toFixed(2)) || 0
+            },
+            Negro:{
+                6: (responseObject[525 -5] && responseObject[525-5][10].dato.toFixed(2)) || 0,
+                12: (responseObject[526 -5] && responseObject[526-5][10].dato.toFixed(2)) || 0,
+                18: (responseObject[527 -5] && responseObject[527-5][10].dato.toFixed(2)) || 0,
+                24: (responseObject[528 -5] && responseObject[528-5][10].dato.toFixed(2)) || 0,
+                30: (responseObject[529 -5] && responseObject[529-5][10].dato.toFixed(2)) || 0
+            },
+            'Rojo oxido':{
+                6: 0,
+                12: 0,
+                18: 0,
+                24: 0,
+                30: 0
+            },
+            "Azul acero":{
+                6: (responseObject[535 -5] && responseObject[535-5][10].dato.toFixed(2)) || 0,
+                12: (responseObject[536 -5] && responseObject[536-5][10].dato.toFixed(2)) || 0,
+                18: (responseObject[537 -5] && responseObject[537-5][10].dato.toFixed(2)) || 0,
+                24: (responseObject[538 -5] && responseObject[538-5][10].dato.toFixed(2)) || 0,
+                30: (responseObject[539 -5] && responseObject[539-5][10].dato.toFixed(2)) || 0
+            },
+            'Verde bosque':{
+                6: (responseObject[530 -5] && responseObject[530-5][10].dato.toFixed(2)) || 0,
+                12: (responseObject[531 -5] && responseObject[531-5][10].dato.toFixed(2)) || 0,
+                18: (responseObject[532 -5] && responseObject[532-5][10].dato.toFixed(2)) || 0,
+                24: (responseObject[533 -5] && responseObject[533-5][10].dato.toFixed(2)) || 0,
+                30: (responseObject[534 -5] && responseObject[534-5][10].dato.toFixed(2)) || 0
+            },
+            "Amarillo trafico":{
+                6: 0,
+                12: 0,
+                18: 0,
+                24: 0,
+                30: 0
+            },
+          }
       } )
 
+      console.warn("responseObject", responseObject)
  
  return {
     "epoxy brillo":{
@@ -1138,6 +1232,7 @@ const makePriceObject = (responseObject)=>{
         },
       },
       "epoxy am":{
+        disolvente: (responseObject[49] && responseObject[49][10].dato.toFixed(2)) || 0,
         Ocre:{
             6: 0,
             12: 0,

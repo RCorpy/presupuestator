@@ -27,13 +27,13 @@ export const getAuth = (setAuth) => {
       });
 }
 
-export const getArticulosTable = (auth, setArticulosTable) =>{
+export const getArticulosTable = (auth, setPriceObject) =>{
   axios.post("https://api.sdelsol.com/admin/LanzarConsulta", {
     ejercicio: "2021",
     consulta: "SELECT * FROM F_ART"
   },authHeader(auth)).then((response) => {
     //console.log("response", response.data)
-    setArticulosTable(makePriceObject(response.data.resultado))
+    setPriceObject(makePriceObject(response.data.resultado))
 }, (error) => {
   console.log(error);
 })
