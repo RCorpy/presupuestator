@@ -93,12 +93,12 @@ app.post('/createexcel', (req, res)=>{
 
           const capasObject = {
             'epoxy brillo':{
-              1:"ENEPOXI HS100 MAGNUM ",
+              1:"EPOXI",
               2:"Catalizador 5 a 1",
               3:"COLOR 100% Sólidos (MANOS)"
             },
             "epoxy mate":{
-              1:"ENEPOXY HS MATE",
+              1:"EPOXY MATE",
               2:"Catalizador 10 a 1",
               3:"COLOR (MANOS)"
             },
@@ -136,12 +136,12 @@ app.post('/createexcel', (req, res)=>{
 
           const imprimacionObject = {
             'epoxy brillo':{
-              1:"ENEPOXI HS100 PRIMER EPOXI RESINA",
+              1:"EPOXI PRIMER",
               2:"Catalizador 5 a 1",
               3:"100% SOLIDOS"
             },
             "epoxy mate":{
-              1:"ENEPOXI HS100 PRIMER EPOXI RESINA",
+              1:"EPOXI PRIMER",
               2:"Catalizador 5 a 1",
               3:"100% SOLIDOS"
             },
@@ -156,9 +156,9 @@ app.post('/createexcel', (req, res)=>{
               3:"ERROR"
             },
             'epoxy am':{
-              1:"ENEPOXI AM PRIMER",
+              1:"EPOXI AM PRIMER",
               2:"Catalizador 5 a 1",
-              3:""
+              3:"100% SOLIDOS"
           }
         }
           if(amount){
@@ -181,7 +181,8 @@ app.post('/createexcel', (req, res)=>{
             'epoxy brillo': "ENESOL EPOXY",
             "epoxy mate": "ENESOL EPOXY",
             'acrilica': "AGUA",
-            'politop': "ENESOL POLITOP"
+            'politop': "ENESOL POLITOP",
+            'epoxy am': "ENESOL EPOXY"
           }
           if(kitSize){
             
