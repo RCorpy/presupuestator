@@ -156,7 +156,7 @@ app.post('/createexcel', (req, res)=>{
               3:"ERROR"
             },
             'epoxy am':{
-              1:"EPOXI AM PRIMER",
+              1:"EPOXI PRIMER",
               2:"Catalizador 5 a 1",
               3:"100% SOLIDOS"
           }
